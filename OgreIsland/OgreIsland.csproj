@@ -41,6 +41,7 @@
     <Compile Include="Packets\AddPlayerPacket.cs" />
     <Compile Include="Packets\AddToBagPacket.cs" />
     <Compile Include="Packets\AdminPacket.cs" />
+    <Compile Include="Packets\AttackPacket.cs" />
     <Compile Include="Packets\Mode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Protocol.cs" />
@@ -51,6 +52,7 @@
     <Compile Include="Sockets\Events\AddPlayerPacketReceivedEvent.cs" />
     <Compile Include="Sockets\Events\AddToBagPacketReceivedEvent.cs" />
     <Compile Include="Sockets\Events\AdminPacketReceivedEvent.cs" />
+    <Compile Include="Sockets\Events\AttackPacketReceivedEvent.cs" />
     <Compile Include="Sockets\Events\ConnectedEvent.cs" />
     <Compile Include="Sockets\Events\DisconnectedEvent.cs" />
     <Compile Include="Sockets\Events\ReceivedEvent.cs" />

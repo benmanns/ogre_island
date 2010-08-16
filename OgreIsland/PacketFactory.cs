@@ -57,6 +57,7 @@ namespace OgreIsland
                 case "ADDPLAYER": return new AddPlayerPacket(packet);
                 case "ADDTOBAG": return new AddToBagPacket(packet);
                 case "ADMIN": return new AdminPacket(packet);
+                case "ATTACK": return new AttackPacket(packet);
                 default: return new AbstractPacket(packet);
             }
         }
