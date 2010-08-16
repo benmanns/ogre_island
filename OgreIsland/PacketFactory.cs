@@ -67,6 +67,7 @@ namespace OgreIsland
                 case "CLOSELOOT": return new CloseLootPacket(packet);
                 case "CLOSEWINDOW": return new CloseWindowPacket(packet);
                 case "CONFIG": return new ConfigurationPacket(packet);
+                case "DEBUG": return new DebugPacket(packet);
                 default: return new AbstractPacket(packet);
             }
         }
