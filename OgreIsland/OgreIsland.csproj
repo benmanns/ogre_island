@@ -49,6 +49,7 @@
     <Compile Include="Packets\ChatChannelPacket.cs" />
     <Compile Include="Packets\ClearSpellPacket.cs" />
     <Compile Include="Packets\CloseLootPacket.cs" />
+    <Compile Include="Packets\CloseWindowPacket.cs" />
     <Compile Include="Packets\Mode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Protocol.cs" />
@@ -67,6 +68,7 @@
     <Compile Include="Sockets\Events\ChatChannelPacketReceivedEvent.cs" />
     <Compile Include="Sockets\Events\ClearSpellPacketReceivedEvent.cs" />
     <Compile Include="Sockets\Events\CloseLootPacketReceivedEvent.cs" />
+    <Compile Include="Sockets\Events\CloseWindowPacketReceivedEvent.cs" />
     <Compile Include="Sockets\Events\ConnectedEvent.cs" />
     <Compile Include="Sockets\Events\DisconnectedEvent.cs" />
     <Compile Include="Sockets\Events\ReceivedEvent.cs" />

@@ -38,6 +38,7 @@ namespace OgreIsland.Sockets
         public event CharacterAttributePacketReceivedEventHandler CharacterAttributePacketReceived;
         public event ClearSpellPacketReceivedEventHandler ClearSpellPacketReceived;
         public event CloseLootPacketReceivedEventHandler CloseLootPacketReceived;
+        public event CloseWindowPacketReceivedEventHandler CloseWindowPacketReceived;
 
         public Socket(Protocol send, Protocol receive)
         {
@@ -226,6 +227,7 @@ namespace OgreIsland.Sockets
                 case "CHARATTRIB": OnCharacterAttributePacketReceived((CharacterAttributePacket)e.Packet); break;
                 case "CLEARSPELL": OnClearSpellPacketReceived((ClearSpellPacket)e.Packet); break;
                 case "CLOSELOOT": OnCloseLootPacketReceived((CloseLootPacket)e.Packet); break;
+                case "CLOSEWINDOW": OnCloseWindowPacketReceived((CloseWindowPacket)e.Packet); break;
                 default: OnAbstractPacketReceived(e.Packet); break;
             }
         }
@@ -333,6 +335,13 @@ namespace OgreIsland.Sockets
         private void OnCloseLootPacketReceived(CloseLootPacketReceivedEventArgs e)
         {
             if (CloseLootPacketReceived != null) CloseLootPacketReceived(this, e);
+            else OnAbstractPacketReceived(e);
+        }
+
+        private void OnCloseWindowPacketReceived(CloseWindowPacket packet) { OnCloseWindowPacketReceived(new CloseWindowPacketReceivedEventArgs(packet)); }
+        private void OnCloseWindowPacketReceived(CloseWindowPacketReceivedEventArgs e)
+        {
+            if (CloseWindowPacketReceived != null) CloseWindowPacketReceived(this, e);
             else OnAbstractPacketReceived(e);
         }
 

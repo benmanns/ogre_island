@@ -65,6 +65,7 @@ namespace OgreIsland
                 case "CHARATTRIB": return new CharacterAttributePacket(packet);
                 case "CLEARSPELL": return new ClearSpellPacket(packet);
                 case "CLOSELOOT": return new CloseLootPacket(packet);
+                case "CLOSEWINDOW": return new CloseWindowPacket(packet);
                 default: return new AbstractPacket(packet);
             }
         }
