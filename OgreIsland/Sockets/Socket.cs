@@ -33,6 +33,7 @@ namespace OgreIsland.Sockets
         public event AttackPacketReceivedEventHandler AttackPacketReceived;
         public event AttributePacketReceivedEventHandler AttributePacketReceived;
         public event BackgroundColorPacketReceivedEventHandler BackgroundColorPacketReceived;
+        public event BattleTextMiscellaneousPacketReceivedEventHandler BattleTextMiscellaneousPacketReceived;
 
         public Socket(Protocol send, Protocol receive)
         {
@@ -216,6 +217,7 @@ namespace OgreIsland.Sockets
                 case "ATTACK": OnAttackPacketReceived((AttackPacket)e.Packet); break;
                 case "ATTRIB": OnAttributePacketReceived((AttributePacket)e.Packet); break;
                 case "BGCOLOR": OnBackgroundColorPacketReceived((BackgroundColorPacket)e.Packet); break;
+                case "BTMISC": OnBattleTextMiscellaneousPacketReceived((BattleTextMiscellaneousPacket)e.Packet); break;
                 default: OnAbstractPacketReceived(e.Packet); break;
             }
         }
@@ -288,6 +290,13 @@ namespace OgreIsland.Sockets
         private void OnBackgroundColorPacketReceived(BackgroundColorPacketReceivedEventArgs e)
         {
             if (BackgroundColorPacketReceived != null) BackgroundColorPacketReceived(this, e);
+            else OnAbstractPacketReceived(e);
+        }
+
+        private void OnBattleTextMiscellaneousPacketReceived(BattleTextMiscellaneousPacket packet) { OnBattleTextMiscellaneousPacketReceived(new BattleTextMiscellaneousPacketReceivedEventArgs(packet)); }
+        private void OnBattleTextMiscellaneousPacketReceived(BattleTextMiscellaneousPacketReceivedEventArgs e)
+        {
+            if (BattleTextMiscellaneousPacketReceived != null) BattleTextMiscellaneousPacketReceived(this, e);
             else OnAbstractPacketReceived(e);
         }
 

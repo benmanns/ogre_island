@@ -60,6 +60,7 @@ namespace OgreIsland
                 case "ATTACK": return new AttackPacket(packet);
                 case "ATTRIB": return new AttributePacket(packet);
                 case "BGCOLOR": return new BackgroundColorPacket(packet);
+                case "BTMISC": return new BattleTextMiscellaneousPacket(packet);
                 default: return new AbstractPacket(packet);
             }
         }
