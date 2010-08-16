@@ -32,6 +32,7 @@ namespace OgreIsland.Sockets
         public event AdminPacketReceivedEventHandler AdminPacketReceived;
         public event AttackPacketReceivedEventHandler AttackPacketReceived;
         public event AttributePacketReceivedEventHandler AttributePacketReceived;
+        public event BackgroundColorPacketReceivedEventHandler BackgroundColorPacketReceived;
 
         public Socket(Protocol send, Protocol receive)
         {
@@ -214,6 +215,7 @@ namespace OgreIsland.Sockets
                 case "ADMIN": OnAdminPacketReceived((AdminPacket)e.Packet); break;
                 case "ATTACK": OnAttackPacketReceived((AttackPacket)e.Packet); break;
                 case "ATTRIB": OnAttributePacketReceived((AttributePacket)e.Packet); break;
+                case "BGCOLOR": OnBackgroundColorPacketReceived((BackgroundColorPacket)e.Packet); break;
                 default: OnAbstractPacketReceived(e.Packet); break;
             }
         }
@@ -279,6 +281,13 @@ namespace OgreIsland.Sockets
         private void OnAttributePacketReceived(AttributePacketReceivedEventArgs e)
         {
             if (AttributePacketReceived != null) AttributePacketReceived(this, e);
+            else OnAbstractPacketReceived(e);
+        }
+
+        private void OnBackgroundColorPacketReceived(BackgroundColorPacket packet) { OnBackgroundColorPacketReceived(new BackgroundColorPacketReceivedEventArgs(packet)); }
+        private void OnBackgroundColorPacketReceived(BackgroundColorPacketReceivedEventArgs e)
+        {
+            if (BackgroundColorPacketReceived != null) BackgroundColorPacketReceived(this, e);
             else OnAbstractPacketReceived(e);
         }
 
