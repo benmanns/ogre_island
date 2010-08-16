@@ -43,6 +43,7 @@ namespace OgreIsland.Sockets
         public event DebugPacketReceivedEventHandler DebugPacketReceived;
         public event EditModePacketReceivedEventHandler EditModePacketReceived;
         public event EditObjectPacketReceivedEventHandler EditObjectPacketReceived;
+        public event FocusPacketReceivedEventHandler FocusPacketReceived;
 
         public Socket(Protocol send, Protocol receive)
         {
@@ -236,6 +237,7 @@ namespace OgreIsland.Sockets
                 case "DEBUG": OnDebugPacketReceived((DebugPacket)e.Packet); break;
                 case "EDITMODE": OnEditModePacketReceived((EditModePacket)e.Packet); break;
                 case "EDITOBJECT": OnEditObjectPacketReceived((EditObjectPacket)e.Packet); break;
+                case "FOCUS": OnFocusPacketReceived((FocusPacket)e.Packet); break;
                 default: OnAbstractPacketReceived(e.Packet); break;
             }
         }
@@ -378,6 +380,13 @@ namespace OgreIsland.Sockets
         private void OnEditObjectPacketReceived(EditObjectPacketReceivedEventArgs e)
         {
             if (EditObjectPacketReceived != null) EditObjectPacketReceived(this, e);
+            else OnAbstractPacketReceived(e);
+        }
+
+        private void OnFocusPacketReceived(FocusPacket packet) { OnFocusPacketReceived(new FocusPacketReceivedEventArgs(packet)); }
+        private void OnFocusPacketReceived(FocusPacketReceivedEventArgs e)
+        {
+            if (FocusPacketReceived != null) FocusPacketReceived(this, e);
             else OnAbstractPacketReceived(e);
         }
 

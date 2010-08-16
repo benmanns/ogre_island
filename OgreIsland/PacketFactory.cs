@@ -70,6 +70,7 @@ namespace OgreIsland
                 case "DEBUG": return new DebugPacket(packet);
                 case "EDITMODE": return new EditModePacket(packet);
                 case "EDITOBJECT": return new EditObjectPacket(packet);
+                case "FOCUS": return new FocusPacket(packet);
                 default: return new AbstractPacket(packet);
             }
         }
