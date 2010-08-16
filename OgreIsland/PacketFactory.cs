@@ -66,6 +66,7 @@ namespace OgreIsland
                 case "CLEARSPELL": return new ClearSpellPacket(packet);
                 case "CLOSELOOT": return new CloseLootPacket(packet);
                 case "CLOSEWINDOW": return new CloseWindowPacket(packet);
+                case "CONFIG": return new ConfigurationPacket(packet);
                 default: return new AbstractPacket(packet);
             }
         }
