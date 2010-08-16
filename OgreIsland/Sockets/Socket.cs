@@ -41,6 +41,7 @@ namespace OgreIsland.Sockets
         public event CloseWindowPacketReceivedEventHandler CloseWindowPacketReceived;
         public event ConfigurationPacketReceivedEventHandler ConfigurationPacketReceived;
         public event DebugPacketReceivedEventHandler DebugPacketReceived;
+        public event EditModePacketReceivedEventHandler EditModePacketReceived;
 
         public Socket(Protocol send, Protocol receive)
         {
@@ -232,6 +233,7 @@ namespace OgreIsland.Sockets
                 case "CLOSEWINDOW": OnCloseWindowPacketReceived((CloseWindowPacket)e.Packet); break;
                 case "CONFIG": OnConfigurationPacketReceived((ConfigurationPacket)e.Packet); break;
                 case "DEBUG": OnDebugPacketReceived((DebugPacket)e.Packet); break;
+                case "EDITMODE": OnEditModePacketReceived((EditModePacket)e.Packet); break;
                 default: OnAbstractPacketReceived(e.Packet); break;
             }
         }
@@ -360,6 +362,13 @@ namespace OgreIsland.Sockets
         private void OnDebugPacketReceived(DebugPacketReceivedEventArgs e)
         {
             if (DebugPacketReceived != null) DebugPacketReceived(this, e);
+            else OnAbstractPacketReceived(e);
+        }
+
+        private void OnEditModePacketReceived(EditModePacket packet) { OnEditModePacketReceived(new EditModePacketReceivedEventArgs(packet)); }
+        private void OnEditModePacketReceived(EditModePacketReceivedEventArgs e)
+        {
+            if (EditModePacketReceived != null) EditModePacketReceived(this, e);
             else OnAbstractPacketReceived(e);
         }
 

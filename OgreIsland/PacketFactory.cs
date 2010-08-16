@@ -68,6 +68,7 @@ namespace OgreIsland
                 case "CLOSEWINDOW": return new CloseWindowPacket(packet);
                 case "CONFIG": return new ConfigurationPacket(packet);
                 case "DEBUG": return new DebugPacket(packet);
+                case "EDITMODE": return new EditModePacket(packet);
                 default: return new AbstractPacket(packet);
             }
         }
