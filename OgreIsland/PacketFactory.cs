@@ -69,6 +69,7 @@ namespace OgreIsland
                 case "CONFIG": return new ConfigurationPacket(packet);
                 case "DEBUG": return new DebugPacket(packet);
                 case "EDITMODE": return new EditModePacket(packet);
+                case "EDITOBJECT": return new EditObjectPacket(packet);
                 default: return new AbstractPacket(packet);
             }
         }
