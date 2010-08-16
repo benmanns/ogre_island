@@ -64,6 +64,7 @@ namespace OgreIsland
                 case "CCHANNEL": return new ChatChannelPacket(packet);
                 case "CHARATTRIB": return new CharacterAttributePacket(packet);
                 case "CLEARSPELL": return new ClearSpellPacket(packet);
+                case "CLOSELOOT": return new CloseLootPacket(packet);
                 default: return new AbstractPacket(packet);
             }
         }
