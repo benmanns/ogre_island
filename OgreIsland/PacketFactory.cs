@@ -58,6 +58,7 @@ namespace OgreIsland
                 case "ADDTOBAG": return new AddToBagPacket(packet);
                 case "ADMIN": return new AdminPacket(packet);
                 case "ATTACK": return new AttackPacket(packet);
+                case "ATTRIB": return new AttributePacket(packet);
                 default: return new AbstractPacket(packet);
             }
         }

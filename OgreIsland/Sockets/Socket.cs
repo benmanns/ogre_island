@@ -31,6 +31,7 @@ namespace OgreIsland.Sockets
         public event AddToBagPacketReceivedEventHandler AddToBagPacketReceived;
         public event AdminPacketReceivedEventHandler AdminPacketReceived;
         public event AttackPacketReceivedEventHandler AttackPacketReceived;
+        public event AttributePacketReceivedEventHandler AttributePacketReceived;
 
         public Socket(Protocol send, Protocol receive)
         {
@@ -212,6 +213,7 @@ namespace OgreIsland.Sockets
                 case "ADDTOBAG": OnAddToBagPacketReceived((AddToBagPacket)e.Packet); break;
                 case "ADMIN": OnAdminPacketReceived((AdminPacket)e.Packet); break;
                 case "ATTACK": OnAttackPacketReceived((AttackPacket)e.Packet); break;
+                case "ATTRIB": OnAttributePacketReceived((AttributePacket)e.Packet); break;
                 default: OnAbstractPacketReceived(e.Packet); break;
             }
         }
@@ -270,6 +272,13 @@ namespace OgreIsland.Sockets
         private void OnAttackPacketReceived(AttackPacketReceivedEventArgs e)
         {
             if (AttackPacketReceived != null) AttackPacketReceived(this, e);
+            else OnAbstractPacketReceived(e);
+        }
+
+        private void OnAttributePacketReceived(AttributePacket packet) { OnAttributePacketReceived(new AttributePacketReceivedEventArgs(packet)); }
+        private void OnAttributePacketReceived(AttributePacketReceivedEventArgs e)
+        {
+            if (AttributePacketReceived != null) AttributePacketReceived(this, e);
             else OnAbstractPacketReceived(e);
         }
 
