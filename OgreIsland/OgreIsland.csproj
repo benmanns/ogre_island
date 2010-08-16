@@ -31,6 +31,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="AbstractPacket.cs" />
     <Compile Include="Packet.cs" />
     <Compile Include="Packets\Mode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
