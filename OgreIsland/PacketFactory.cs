@@ -116,6 +116,7 @@ namespace OgreIsland
                 case "SETSPELLBAR": return new SetSpellBarPacket(packet);
                 case "SETTEXT": return new SetTextPacket(packet);
                 case "SHOWHOUSELOCK": return new ShowHouseLockPacket(packet);
+                case "SHOWOBJ": return new ShowObjectPacket(packet);
                 default: return new AbstractPacket(packet);
             }
         }

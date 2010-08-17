@@ -100,6 +100,7 @@
     <Compile Include="Packets\SetSpellBarPacket.cs" />
     <Compile Include="Packets\SetTextPacket.cs" />
     <Compile Include="Packets\ShowHouseLockPacket.cs" />
+    <Compile Include="Packets\ShowObjectPacket.cs" />
     <Compile Include="Packets\SpellBarTextLeftPacket.cs" />
     <Compile Include="Packets\SpellBarTextRightPacket.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -172,6 +173,7 @@
     <Compile Include="Sockets\Events\SetSpellBarPacketReceivedEvent.cs" />
     <Compile Include="Sockets\Events\SetTextPacketReceivedEvent.cs" />
     <Compile Include="Sockets\Events\ShowHouseLockPacketReceivedEvent.cs" />
+    <Compile Include="Sockets\Events\ShowObjectPacketReceivedEvent.cs" />
     <Compile Include="Sockets\Events\SpellBarTextLeftPacketReceivedEvent.cs" />
     <Compile Include="Sockets\Events\SpellBarTextRightPacketReceivedEvent.cs" />
     <Compile Include="Sockets\Socket.cs" />
