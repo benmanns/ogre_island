@@ -71,6 +71,7 @@ namespace OgreIsland.Sockets
         public event NoFloodWarningPacketReceivedEventHandler NoFloodWarningPacketReceived;
         public event OpenPanelPacketReceivedEventHandler OpenPanelPacketReceived;
         public event OpenUrlPacketReceivedEventHandler OpenUrlPacketReceived;
+        public event OpenWindowPacketReceivedEventHandler OpenWindowPacketReceived;
 
         public Socket(Protocol send, Protocol receive)
         {
@@ -292,6 +293,7 @@ namespace OgreIsland.Sockets
                 case "NOFLOODWARNING": OnNoFloodWarningPacketReceived((NoFloodWarningPacket)e.Packet); break;
                 case "OPENPANEL": OnOpenPanelPacketReceived((OpenPanelPacket)e.Packet); break;
                 case "OPENURL": OnOpenUrlPacketReceived((OpenUrlPacket)e.Packet); break;
+                case "OPENWINDOW": OnOpenWindowPacketReceived((OpenWindowPacket)e.Packet); break;
                 default: OnAbstractPacketReceived(e.Packet); break;
             }
         }
@@ -631,6 +633,13 @@ namespace OgreIsland.Sockets
         private void OnOpenUrlPacketReceived(OpenUrlPacketReceivedEventArgs e)
         {
             if (OpenUrlPacketReceived != null) OpenUrlPacketReceived(this, e);
+            else OnAbstractPacketReceived(e);
+        }
+
+        private void OnOpenWindowPacketReceived(OpenWindowPacket packet) { OnOpenWindowPacketReceived(new OpenWindowPacketReceivedEventArgs(packet)); }
+        private void OnOpenWindowPacketReceived(OpenWindowPacketReceivedEventArgs e)
+        {
+            if (OpenWindowPacketReceived != null) OpenWindowPacketReceived(this, e);
             else OnAbstractPacketReceived(e);
         }
 

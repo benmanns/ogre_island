@@ -98,6 +98,7 @@ namespace OgreIsland
                 case "NOFLOODWARNING": return new NoFloodWarningPacket(packet);
                 case "OPENPANEL": return new OpenPanelPacket(packet);
                 case "OPENURL": return new OpenUrlPacket(packet);
+                case "OPENWINDOW": return new OpenWindowPacket(packet);
                 default: return new AbstractPacket(packet);
             }
         }
