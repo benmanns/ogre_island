@@ -105,6 +105,7 @@ namespace OgreIsland
                 case "REMCHAR": return new RemoveCharacterPacket(packet);
                 case "REMOBJ": return new RemoveObjectPacket(packet);
                 case "REMOVEPLAYER": return new RemovePlayerPacket(packet);
+                case "SAY": return new SayPacket(packet);
                 default: return new AbstractPacket(packet);
             }
         }
