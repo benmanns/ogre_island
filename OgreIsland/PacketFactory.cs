@@ -121,6 +121,7 @@ namespace OgreIsland
                 case "SOUND": return new SoundPacket(packet);
                 case "SOUNDTOGGLE": return new SoundTogglePacket(packet);
                 case "SPECBAR": return new SpecBarPacket(packet);
+                case "SPELL": return new SpellPacket(packet);
                 default: return new AbstractPacket(packet);
             }
         }

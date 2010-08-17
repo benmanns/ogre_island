@@ -94,6 +94,7 @@ namespace OgreIsland.Sockets
         public event SoundPacketReceivedEventHandler SoundPacketReceived;
         public event SoundTogglePacketReceivedEventHandler SoundTogglePacketReceived;
         public event SpecBarPacketReceivedEventHandler SpecBarPacketReceived;
+        public event SpellPacketReceivedEventHandler SpellPacketReceived;
 
         public Socket(Protocol send, Protocol receive)
         {
@@ -338,6 +339,7 @@ namespace OgreIsland.Sockets
                 case "SOUND": OnSoundPacketReceived((SoundPacket)e.Packet); break;
                 case "SOUNDTOGGLE": OnSoundTogglePacketReceived((SoundTogglePacket)e.Packet); break;
                 case "SPECBAR": OnSpecBarPacketReceived((SpecBarPacket)e.Packet); break;
+                case "SPELL": OnSpellPacketReceived((SpellPacket)e.Packet); break;
                 default: OnAbstractPacketReceived(e.Packet); break;
             }
         }
@@ -838,6 +840,13 @@ namespace OgreIsland.Sockets
         private void OnSpecBarPacketReceived(SpecBarPacketReceivedEventArgs e)
         {
             if (SpecBarPacketReceived != null) SpecBarPacketReceived(this, e);
+            else OnAbstractPacketReceived(e);
+        }
+
+        private void OnSpellPacketReceived(SpellPacket packet) { OnSpellPacketReceived(new SpellPacketReceivedEventArgs(packet)); }
+        private void OnSpellPacketReceived(SpellPacketReceivedEventArgs e)
+        {
+            if (SpellPacketReceived != null) SpellPacketReceived(this, e);
             else OnAbstractPacketReceived(e);
         }
 
