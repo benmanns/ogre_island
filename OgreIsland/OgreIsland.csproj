@@ -69,6 +69,7 @@
     <Compile Include="Packets\LoadPanelPacket.cs" />
     <Compile Include="Packets\LoadPicturePacket.cs" />
     <Compile Include="Packets\LockPacket.cs" />
+    <Compile Include="Packets\LoginReplyPacket.cs" />
     <Compile Include="Packets\Mode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Protocol.cs" />
@@ -109,6 +110,7 @@
     <Compile Include="Sockets\Events\LoadPanelPacketReceivedEvent.cs" />
     <Compile Include="Sockets\Events\LoadPicturePacketReceivedEvent.cs" />
     <Compile Include="Sockets\Events\LockPacketReceivedEvent.cs" />
+    <Compile Include="Sockets\Events\LoginReplyPacketReceivedEvent.cs" />
     <Compile Include="Sockets\Events\ReceivedEvent.cs" />
     <Compile Include="Sockets\Events\SentEvent.cs" />
     <Compile Include="Sockets\Socket.cs" />

@@ -85,6 +85,7 @@ namespace OgreIsland
                 case "LOADPANEL": return new LoadPanelPacket(packet);
                 case "LOADPIC": return new LoadPicturePacket(packet);
                 case "LOCK": return new LockPacket(packet);
+                case "LOGINREPLY": return new LoginReplyPacket(packet);
                 default: return new AbstractPacket(packet);
             }
         }
