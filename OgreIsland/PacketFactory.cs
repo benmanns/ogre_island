@@ -77,6 +77,7 @@ namespace OgreIsland
                 case "HANDSHAKE": return new HandshakePacket(packet);
                 case "HB": return new HealthBarPacket(packet);
                 case "HIDEOBJ": return new HideObjectPacket(packet);
+                case "HOUSEITEMTAB": return new HouseItemTabPacket(packet);
                 default: return new AbstractPacket(packet);
             }
         }
