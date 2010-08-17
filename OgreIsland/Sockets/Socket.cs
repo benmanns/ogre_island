@@ -518,6 +518,7 @@ namespace OgreIsland.Sockets
             else OnAbstractPacketReceived(e);
         }
 
+
         private void OnLoginReplyPacketReceived(LoginReplyPacket packet) { OnLoginReplyPacketReceived(new LoginReplyPacketReceivedEventArgs(packet)); }
         private void OnLoginReplyPacketReceived(LoginReplyPacketReceivedEventArgs e)
         {

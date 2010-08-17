@@ -69,6 +69,7 @@
     <Compile Include="Packets\LoadPanelPacket.cs" />
     <Compile Include="Packets\LoadPicturePacket.cs" />
     <Compile Include="Packets\LockPacket.cs" />
+    <Compile Include="Packets\LoginPacket.cs" />
     <Compile Include="Packets\LoginReplyPacket.cs" />
     <Compile Include="Packets\Mode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
