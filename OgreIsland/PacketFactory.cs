@@ -132,6 +132,7 @@ namespace OgreIsland
                 case "TRADEWINDOW": return new TradeWindowPacket(packet);
                 case "WARP": return new WarpPacket(packet);
                 case "WEATHER": return new WeatherPacket(packet);
+                case "WLEVEL": return new WLevelPacket(packet);
                 default: return new AbstractPacket(packet);
             }
         }

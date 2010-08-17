@@ -105,6 +105,7 @@ namespace OgreIsland.Sockets
         public event TradeWindowPacketReceivedEventHandler TradeWindowPacketReceived;
         public event WarpPacketReceivedEventHandler WarpPacketReceived;
         public event WeatherPacketReceivedEventHandler WeatherPacketReceived;
+        public event WLevelPacketReceivedEventHandler WLevelPacketReceived;
 
         public Socket(Protocol send, Protocol receive)
         {
@@ -360,6 +361,7 @@ namespace OgreIsland.Sockets
                 case "TRADEWINDOW": OnTradeWindowPacketReceived((TradeWindowPacket)e.Packet); break;
                 case "WARP": OnWarpPacketReceived((WarpPacket)e.Packet); break;
                 case "WEATHER": OnWeatherPacketReceived((WeatherPacket)e.Packet); break;
+                case "WLEVEL": OnWLevelPacketReceived((WLevelPacket)e.Packet); break;
                 default: OnAbstractPacketReceived(e.Packet); break;
             }
         }
@@ -937,6 +939,13 @@ namespace OgreIsland.Sockets
         private void OnWeatherPacketReceived(WeatherPacketReceivedEventArgs e)
         {
             if (WeatherPacketReceived != null) WeatherPacketReceived(this, e);
+            else OnAbstractPacketReceived(e);
+        }
+
+        private void OnWLevelPacketReceived(WLevelPacket packet) { OnWLevelPacketReceived(new WLevelPacketReceivedEventArgs(packet)); }
+        private void OnWLevelPacketReceived(WLevelPacketReceivedEventArgs e)
+        {
+            if (WLevelPacketReceived != null) WLevelPacketReceived(this, e);
             else OnAbstractPacketReceived(e);
         }
 
