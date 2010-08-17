@@ -84,6 +84,7 @@ namespace OgreIsland.Sockets
         public event SelectedPacketReceivedEventHandler SelectedPacketReceived;
         public event SetActionPacketReceivedEventHandler SetActionPacketReceived;
         public event SetClipsPacketReceivedEventHandler SetClipsPacketReceived;
+        public event SetSkillPacketReceivedEventHandler SetSkillPacketReceived;
 
         public Socket(Protocol send, Protocol receive)
         {
@@ -318,6 +319,7 @@ namespace OgreIsland.Sockets
                 case "SELECTED": OnSelectedPacketReceived((SelectedPacket)e.Packet); break;
                 case "SETACTION": OnSetActionPacketReceived((SetActionPacket)e.Packet); break;
                 case "SETCLIPS": OnSetClipsPacketReceived((SetClipsPacket)e.Packet); break;
+                case "SETSKILL": OnSetSkillPacketReceived((SetSkillPacket)e.Packet); break;
                 default: OnAbstractPacketReceived(e.Packet); break;
             }
         }
@@ -748,6 +750,13 @@ namespace OgreIsland.Sockets
         private void OnSetClipsPacketReceived(SetClipsPacketReceivedEventArgs e)
         {
             if (SetClipsPacketReceived != null) SetClipsPacketReceived(this, e);
+            else OnAbstractPacketReceived(e);
+        }
+
+        private void OnSetSkillPacketReceived(SetSkillPacket packet) { OnSetSkillPacketReceived(new SetSkillPacketReceivedEventArgs(packet)); }
+        private void OnSetSkillPacketReceived(SetSkillPacketReceivedEventArgs e)
+        {
+            if (SetSkillPacketReceived != null) SetSkillPacketReceived(this, e);
             else OnAbstractPacketReceived(e);
         }
 

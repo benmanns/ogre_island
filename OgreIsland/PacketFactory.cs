@@ -111,6 +111,7 @@ namespace OgreIsland
                 case "SELECTED": return new SelectedPacket(packet);
                 case "SETACTION": return new SetActionPacket(packet);
                 case "SETCLIPS": return new SetClipsPacket(packet);
+                case "SETSKILL": return new SetSkillPacket(packet);
                 default: return new AbstractPacket(packet);
             }
         }
