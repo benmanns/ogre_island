@@ -75,6 +75,7 @@ namespace OgreIsland.Sockets
         public event PartyPacketReceivedEventHandler PartyPacketReceived;
         public event PlayPacketReceivedEventHandler PlayPacketReceived;
         public event PlayerMenuPacketReceivedEventHandler PlayerMenuPacketReceived;
+        public event RemoveCharacterPacketReceivedEventHandler RemoveCharacterPacketReceived;
 
         public Socket(Protocol send, Protocol receive)
         {
@@ -300,6 +301,7 @@ namespace OgreIsland.Sockets
                 case "PARTY": OnPartyPacketReceived((PartyPacket)e.Packet); break;
                 case "PLAY": OnPlayPacketReceived((PlayPacket)e.Packet); break;
                 case "PLAYERMENU": OnPlayerMenuPacketReceived((PlayerMenuPacket)e.Packet); break;
+                case "REMCHAR": OnRemoveCharacterPacketReceived((RemoveCharacterPacket)e.Packet); break;
                 default: OnAbstractPacketReceived(e.Packet); break;
             }
         }
@@ -667,6 +669,13 @@ namespace OgreIsland.Sockets
         private void OnPlayerMenuPacketReceived(PlayerMenuPacketReceivedEventArgs e)
         {
             if (PlayerMenuPacketReceived != null) PlayerMenuPacketReceived(this, e);
+            else OnAbstractPacketReceived(e);
+        }
+
+        private void OnRemoveCharacterPacketReceived(RemoveCharacterPacket packet) { OnRemoveCharacterPacketReceived(new RemoveCharacterPacketReceivedEventArgs(packet)); }
+        private void OnRemoveCharacterPacketReceived(RemoveCharacterPacketReceivedEventArgs e)
+        {
+            if (RemoveCharacterPacketReceived != null) RemoveCharacterPacketReceived(this, e);
             else OnAbstractPacketReceived(e);
         }
 
