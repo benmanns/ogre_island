@@ -128,6 +128,7 @@ namespace OgreIsland
                 case "SV": return new SetVariablePacket(packet);
                 case "TAKEFROMBAG": return new TakeFromBagPacket(packet);
                 case "TICK": return new TickPacket(packet);
+                case "TOOLICON": return new ToolIconPacket(packet);
                 default: return new AbstractPacket(packet);
             }
         }
