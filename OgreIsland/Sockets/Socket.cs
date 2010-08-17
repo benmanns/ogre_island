@@ -47,6 +47,7 @@ namespace OgreIsland.Sockets
         public event GuildMiscellaneousPacketReceivedEventHandler GuildMiscellaneousPacketReceived;
         public event GoodbyePacketReceivedEventHandler GoodbyePacketReceived;
         public event GetVariablePacketReceivedEventHandler GetVariablePacketReceived;
+        public event HandshakePacketReceivedEventHandler HandshakePacketReceived;
 
         public Socket(Protocol send, Protocol receive)
         {
@@ -244,6 +245,7 @@ namespace OgreIsland.Sockets
                 case "GMISC": OnGuildMiscellaneousPacketReceived((GuildMiscellaneousPacket)e.Packet); break;
                 case "GOODBYE": OnGoodbyePacketReceived((GoodbyePacket)e.Packet); break;
                 case "GV": OnGetVariablePacketReceived((GetVariablePacket)e.Packet); break;
+                case "HANDSHAKE": OnHandshakePacketReceived((HandshakePacket)e.Packet); break;
                 default: OnAbstractPacketReceived(e.Packet); break;
             }
         }
@@ -414,6 +416,13 @@ namespace OgreIsland.Sockets
         private void OnGetVariablePacketReceived(GetVariablePacketReceivedEventArgs e)
         {
             if (GetVariablePacketReceived != null) GetVariablePacketReceived(this, e);
+            else OnAbstractPacketReceived(e);
+        }
+
+        private void OnHandshakePacketReceived(HandshakePacket packet) { OnHandshakePacketReceived(new HandshakePacketReceivedEventArgs(packet)); }
+        private void OnHandshakePacketReceived(HandshakePacketReceivedEventArgs e)
+        {
+            if (HandshakePacketReceived != null) HandshakePacketReceived(this, e);
             else OnAbstractPacketReceived(e);
         }
 

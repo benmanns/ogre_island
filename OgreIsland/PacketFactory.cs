@@ -74,6 +74,7 @@ namespace OgreIsland
                 case "GMISC": return new GuildMiscellaneousPacket(packet);
                 case "GOODBYE": return new GoodbyePacket(packet);
                 case "GV": return new GetVariablePacket(packet);
+                case "HANDSHAKE": return new HandshakePacket(packet);
                 default: return new AbstractPacket(packet);
             }
         }
