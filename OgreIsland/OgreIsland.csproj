@@ -93,6 +93,7 @@
     <Compile Include="Packets\RemovePlayerPacket.cs" />
     <Compile Include="Packets\SayPacket.cs" />
     <Compile Include="Packets\SelectedPacket.cs" />
+    <Compile Include="Packets\SetActionPacket.cs" />
     <Compile Include="Packets\SpellBarTextLeftPacket.cs" />
     <Compile Include="Packets\SpellBarTextRightPacket.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -158,6 +159,7 @@
     <Compile Include="Sockets\Events\SayPacketReceivedEvent.cs" />
     <Compile Include="Sockets\Events\SelectedPacketReceivedEvent.cs" />
     <Compile Include="Sockets\Events\SentEvent.cs" />
+    <Compile Include="Sockets\Events\SetActionPacketReceivedEvent.cs" />
     <Compile Include="Sockets\Events\SpellBarTextLeftPacketReceivedEvent.cs" />
     <Compile Include="Sockets\Events\SpellBarTextRightPacketReceivedEvent.cs" />
     <Compile Include="Sockets\Socket.cs" />
