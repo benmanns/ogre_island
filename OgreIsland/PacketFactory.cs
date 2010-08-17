@@ -71,6 +71,7 @@ namespace OgreIsland
                 case "EDITMODE": return new EditModePacket(packet);
                 case "EDITOBJECT": return new EditObjectPacket(packet);
                 case "FOCUS": return new FocusPacket(packet);
+                case "GMISC": return new GuildMiscellaneousPacket(packet);
                 default: return new AbstractPacket(packet);
             }
         }
