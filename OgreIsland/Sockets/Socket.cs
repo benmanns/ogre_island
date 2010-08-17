@@ -88,6 +88,7 @@ namespace OgreIsland.Sockets
         public event SetSkillBarPacketReceivedEventHandler SetSkillBarPacketReceived;
         public event SetSpellBarPacketReceivedEventHandler SetSpellBarPacketReceived;
         public event SetTextPacketReceivedEventHandler SetTextPacketReceived;
+        public event ShowHouseLockPacketReceivedEventHandler ShowHouseLockPacketReceived;
 
         public Socket(Protocol send, Protocol receive)
         {
@@ -326,6 +327,7 @@ namespace OgreIsland.Sockets
                 case "SETSKILLBAR": OnSetSkillBarPacketReceived((SetSkillBarPacket)e.Packet); break;
                 case "SETSPELLBAR": OnSetSpellBarPacketReceived((SetSpellBarPacket)e.Packet); break;
                 case "SETTEXT": OnSetTextPacketReceived((SetTextPacket)e.Packet); break;
+                case "SHOWHOUSELOCK": OnShowHouseLockPacketReceived((ShowHouseLockPacket)e.Packet); break;
                 default: OnAbstractPacketReceived(e.Packet); break;
             }
         }
@@ -784,6 +786,13 @@ namespace OgreIsland.Sockets
         private void OnSetTextPacketReceived(SetTextPacketReceivedEventArgs e)
         {
             if (SetTextPacketReceived != null) SetTextPacketReceived(this, e);
+            else OnAbstractPacketReceived(e);
+        }
+
+        private void OnShowHouseLockPacketReceived(ShowHouseLockPacket packet) { OnShowHouseLockPacketReceived(new ShowHouseLockPacketReceivedEventArgs(packet)); }
+        private void OnShowHouseLockPacketReceived(ShowHouseLockPacketReceivedEventArgs e)
+        {
+            if (ShowHouseLockPacketReceived != null) ShowHouseLockPacketReceived(this, e);
             else OnAbstractPacketReceived(e);
         }
 
