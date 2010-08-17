@@ -108,6 +108,7 @@ namespace OgreIsland
                 case "SAY": return new SayPacket(packet);
                 case "SBTEXTL": return new SpellBarTextLeftPacket(packet);
                 case "SBTEXTR": return new SpellBarTextRightPacket(packet);
+                case "SELECTED": return new SelectedPacket(packet);
                 default: return new AbstractPacket(packet);
             }
         }

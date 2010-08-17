@@ -81,6 +81,7 @@ namespace OgreIsland.Sockets
         public event SayPacketReceivedEventHandler SayPacketReceived;
         public event SpellBarTextLeftPacketReceivedEventHandler SpellBarTextLeftPacketReceived;
         public event SpellBarTextRightPacketReceivedEventHandler SpellBarTextRightPacketReceived;
+        public event SelectedPacketReceivedEventHandler SelectedPacketReceived;
 
         public Socket(Protocol send, Protocol receive)
         {
@@ -312,6 +313,7 @@ namespace OgreIsland.Sockets
                 case "SAY": OnSayPacketReceived((SayPacket)e.Packet); break;
                 case "SBTEXTL": OnSpellBarTextLeftPacketReceived((SpellBarTextLeftPacket)e.Packet); break;
                 case "SBTEXTR": OnSpellBarTextRightPacketReceived((SpellBarTextRightPacket)e.Packet); break;
+                case "SELECTED": OnSelectedPacketReceived((SelectedPacket)e.Packet); break;
                 default: OnAbstractPacketReceived(e.Packet); break;
             }
         }
@@ -721,6 +723,13 @@ namespace OgreIsland.Sockets
         private void OnSpellBarTextRightPacketReceived(SpellBarTextRightPacketReceivedEventArgs e)
         {
             if (SpellBarTextRightPacketReceived != null) SpellBarTextRightPacketReceived(this, e);
+            else OnAbstractPacketReceived(e);
+        }
+
+        private void OnSelectedPacketReceived(SelectedPacket packet) { OnSelectedPacketReceived(new SelectedPacketReceivedEventArgs(packet)); }
+        private void OnSelectedPacketReceived(SelectedPacketReceivedEventArgs e)
+        {
+            if (SelectedPacketReceived != null) SelectedPacketReceived(this, e);
             else OnAbstractPacketReceived(e);
         }
 
