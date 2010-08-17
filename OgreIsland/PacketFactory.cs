@@ -90,6 +90,7 @@ namespace OgreIsland
                 case "MISC": return new MiscellaneousPacket(packet);
                 case "MODIFYBAGITEM": return new ModifyBagItemPacket(packet);
                 case "MODOBJ": return new ModifyObjectPacket(packet);
+                case "MOVE": return new MovePacket(packet, Mode.Server);
                 default: return new AbstractPacket(packet);
             }
         }
