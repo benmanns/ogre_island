@@ -59,6 +59,7 @@ namespace OgreIsland.Sockets
         public event LoadPicturePacketReceivedEventHandler LoadPicturePacketReceived;
         public event LockPacketReceivedEventHandler LockPacketReceived;
         public event LoginReplyPacketReceivedEventHandler LoginReplyPacketReceived;
+        public event MeAttributePacketReceivedEventHandler MeAttributePacketReceived;
 
         public Socket(Protocol send, Protocol receive)
         {
@@ -268,6 +269,7 @@ namespace OgreIsland.Sockets
                 case "LOADPIC": OnLoadPicturePacketReceived((LoadPicturePacket)e.Packet); break;
                 case "LOCK": OnLockPacketReceived((LockPacket)e.Packet); break;
                 case "LOGINREPLY": OnLoginReplyPacketReceived((LoginReplyPacket)e.Packet); break;
+                case "MEATTRIB": OnMeAttributePacketReceived((MeAttributePacket)e.Packet); break;
                 default: OnAbstractPacketReceived(e.Packet); break;
             }
         }
@@ -523,6 +525,13 @@ namespace OgreIsland.Sockets
         private void OnLoginReplyPacketReceived(LoginReplyPacketReceivedEventArgs e)
         {
             if (LoginReplyPacketReceived != null) LoginReplyPacketReceived(this, e);
+            else OnAbstractPacketReceived(e);
+        }
+
+        private void OnMeAttributePacketReceived(MeAttributePacket packet) { OnMeAttributePacketReceived(new MeAttributePacketReceivedEventArgs(packet)); }
+        private void OnMeAttributePacketReceived(MeAttributePacketReceivedEventArgs e)
+        {
+            if (MeAttributePacketReceived != null) MeAttributePacketReceived(this, e);
             else OnAbstractPacketReceived(e);
         }
 
