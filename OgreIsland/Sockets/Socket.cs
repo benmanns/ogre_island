@@ -99,6 +99,7 @@ namespace OgreIsland.Sockets
         public event StatusPacketReceivedEventHandler StatusPacketReceived;
         public event StopPacketReceivedEventHandler StopPacketReceived;
         public event SetVariablePacketReceivedEventHandler SetVariablePacketReceived;
+        public event TakeFromBagPacketReceivedEventHandler TakeFromBagPacketReceived;
 
         public Socket(Protocol send, Protocol receive)
         {
@@ -348,6 +349,7 @@ namespace OgreIsland.Sockets
                 case "STATUS": OnStatusPacketReceived((StatusPacket)e.Packet); break;
                 case "STOP": OnStopPacketReceived((StopPacket)e.Packet); break;
                 case "SV": OnSetVariablePacketReceived((SetVariablePacket)e.Packet); break;
+                case "TAKEFROMBAG": OnTakeFromBagPacketReceived((TakeFromBagPacket)e.Packet); break;
                 default: OnAbstractPacketReceived(e.Packet); break;
             }
         }
@@ -883,6 +885,13 @@ namespace OgreIsland.Sockets
         private void OnSetVariablePacketReceived(SetVariablePacketReceivedEventArgs e)
         {
             if (SetVariablePacketReceived != null) SetVariablePacketReceived(this, e);
+            else OnAbstractPacketReceived(e);
+        }
+
+        private void OnTakeFromBagPacketReceived(TakeFromBagPacket packet) { OnTakeFromBagPacketReceived(new TakeFromBagPacketReceivedEventArgs(packet)); }
+        private void OnTakeFromBagPacketReceived(TakeFromBagPacketReceivedEventArgs e)
+        {
+            if (TakeFromBagPacketReceived != null) TakeFromBagPacketReceived(this, e);
             else OnAbstractPacketReceived(e);
         }
 

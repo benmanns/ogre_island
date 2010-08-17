@@ -126,6 +126,7 @@ namespace OgreIsland
                 case "STATUS": return new StatusPacket(packet);
                 case "STOP": return new StopPacket(packet);
                 case "SV": return new SetVariablePacket(packet);
+                case "TAKEFROMBAG": return new TakeFromBagPacket(packet);
                 default: return new AbstractPacket(packet);
             }
         }
