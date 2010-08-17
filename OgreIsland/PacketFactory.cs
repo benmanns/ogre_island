@@ -81,6 +81,7 @@ namespace OgreIsland
                 case "INITBAR": return new InitializationBarPacket(packet);
                 case "INV": return new InventoryPacket(packet);
                 case "JOIN": return new JoinPacket(packet);
+                case "LEAVE": return new LeavePacket(packet);
                 default: return new AbstractPacket(packet);
             }
         }
