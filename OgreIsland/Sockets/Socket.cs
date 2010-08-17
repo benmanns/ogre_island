@@ -53,6 +53,7 @@ namespace OgreIsland.Sockets
         public event HouseItemTabPacketReceivedEventHandler HouseItemTabPacketReceived;
         public event InitializationBarPacketReceivedEventHandler InitializationBarPacketReceived;
         public event InventoryPacketReceivedEventHandler InventoryPacketReceived;
+        public event JoinPacketReceivedEventHandler JoinPacketReceived;
 
         public Socket(Protocol send, Protocol receive)
         {
@@ -256,6 +257,7 @@ namespace OgreIsland.Sockets
                 case "HOUSEITEMTAB": OnHouseItemTabPacketReceived((HouseItemTabPacket)e.Packet); break;
                 case "INITBAR": OnInitializationBarPacketReceived((InitializationBarPacket)e.Packet); break;
                 case "INV": OnInventoryPacketReceived((InventoryPacket)e.Packet); break;
+                case "JOIN": OnJoinPacketReceived((JoinPacket)e.Packet); break;
                 default: OnAbstractPacketReceived(e.Packet); break;
             }
         }
@@ -468,6 +470,13 @@ namespace OgreIsland.Sockets
         private void OnInventoryPacketReceived(InventoryPacketReceivedEventArgs e)
         {
             if (InventoryPacketReceived != null) InventoryPacketReceived(this, e);
+            else OnAbstractPacketReceived(e);
+        }
+
+        private void OnJoinPacketReceived(JoinPacket packet) { OnJoinPacketReceived(new JoinPacketReceivedEventArgs(packet)); }
+        private void OnJoinPacketReceived(JoinPacketReceivedEventArgs e)
+        {
+            if (JoinPacketReceived != null) JoinPacketReceived(this, e);
             else OnAbstractPacketReceived(e);
         }
 

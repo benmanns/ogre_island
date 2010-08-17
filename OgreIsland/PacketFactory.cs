@@ -80,6 +80,7 @@ namespace OgreIsland
                 case "HOUSEITEMTAB": return new HouseItemTabPacket(packet);
                 case "INITBAR": return new InitializationBarPacket(packet);
                 case "INV": return new InventoryPacket(packet);
+                case "JOIN": return new JoinPacket(packet);
                 default: return new AbstractPacket(packet);
             }
         }
