@@ -62,6 +62,7 @@ namespace OgreIsland
                 case "BGCOLOR": return new BackgroundColorPacket(packet);
                 case "BTMISC": return new BattleTextMiscellaneousPacket(packet);
                 case "CCHANNEL": return new ChatChannelPacket(packet);
+                case "CHARATTRIB": return new CharacterAttributePacket(packet);
                 default: return new AbstractPacket(packet);
             }
         }

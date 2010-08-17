@@ -45,6 +45,7 @@
     <Compile Include="Packets\AttributePacket.cs" />
     <Compile Include="Packets\BackgroundColorPacket.cs" />
     <Compile Include="Packets\BattleTextMiscellaneousPacket.cs" />
+    <Compile Include="Packets\CharacterAttributePacket.cs" />
     <Compile Include="Packets\ChatChannelPacket.cs" />
     <Compile Include="Packets\Mode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -60,6 +61,7 @@
     <Compile Include="Sockets\Events\AttributePacketReceivedEvent.cs" />
     <Compile Include="Sockets\Events\BackgroundColorPacketReceivedEvent.cs" />
     <Compile Include="Sockets\Events\BattleTextMiscellaneousPacketReceivedEvent.cs" />
+    <Compile Include="Sockets\Events\CharacterAttributePacketReceivedEvent.cs" />
     <Compile Include="Sockets\Events\ChatChannelPacketReceivedEvent.cs" />
     <Compile Include="Sockets\Events\ConnectedEvent.cs" />
     <Compile Include="Sockets\Events\DisconnectedEvent.cs" />

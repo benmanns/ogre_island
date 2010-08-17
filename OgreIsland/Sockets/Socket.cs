@@ -35,6 +35,7 @@ namespace OgreIsland.Sockets
         public event BackgroundColorPacketReceivedEventHandler BackgroundColorPacketReceived;
         public event BattleTextMiscellaneousPacketReceivedEventHandler BattleTextMiscellaneousPacketReceived;
         public event ChatChannelPacketReceivedEventHandler ChatChannelPacketReceived;
+        public event CharacterAttributePacketReceivedEventHandler CharacterAttributePacketReceived;
 
         public Socket(Protocol send, Protocol receive)
         {
@@ -220,6 +221,7 @@ namespace OgreIsland.Sockets
                 case "BGCOLOR": OnBackgroundColorPacketReceived((BackgroundColorPacket)e.Packet); break;
                 case "BTMISC": OnBattleTextMiscellaneousPacketReceived((BattleTextMiscellaneousPacket)e.Packet); break;
                 case "CCHANNEL": OnChatChannelPacketReceived((ChatChannelPacket)e.Packet); break;
+                case "CHARATTRIB": OnCharacterAttributePacketReceived((CharacterAttributePacket)e.Packet); break;
                 default: OnAbstractPacketReceived(e.Packet); break;
             }
         }
@@ -306,6 +308,13 @@ namespace OgreIsland.Sockets
         private void OnChatChannelPacketReceived(ChatChannelPacketReceivedEventArgs e)
         {
             if (ChatChannelPacketReceived != null) ChatChannelPacketReceived(this, e);
+            else OnAbstractPacketReceived(e);
+        }
+
+        private void OnCharacterAttributePacketReceived(CharacterAttributePacket packet) { OnCharacterAttributePacketReceived(new CharacterAttributePacketReceivedEventArgs(packet)); }
+        private void OnCharacterAttributePacketReceived(CharacterAttributePacketReceivedEventArgs e)
+        {
+            if (CharacterAttributePacketReceived != null) CharacterAttributePacketReceived(this, e);
             else OnAbstractPacketReceived(e);
         }
 
