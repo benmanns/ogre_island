@@ -107,6 +107,7 @@ namespace OgreIsland
                 case "REMOVEPLAYER": return new RemovePlayerPacket(packet);
                 case "SAY": return new SayPacket(packet);
                 case "SBTEXTL": return new SpellBarTextLeftPacket(packet);
+                case "SBTEXTR": return new SpellBarTextRightPacket(packet);
                 default: return new AbstractPacket(packet);
             }
         }
