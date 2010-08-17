@@ -60,6 +60,7 @@ namespace OgreIsland.Sockets
         public event LockPacketReceivedEventHandler LockPacketReceived;
         public event LoginReplyPacketReceivedEventHandler LoginReplyPacketReceived;
         public event MeAttributePacketReceivedEventHandler MeAttributePacketReceived;
+        public event MiscellaneousPacketReceivedEventHandler MiscellaneousPacketReceived;
 
         public Socket(Protocol send, Protocol receive)
         {
@@ -270,6 +271,7 @@ namespace OgreIsland.Sockets
                 case "LOCK": OnLockPacketReceived((LockPacket)e.Packet); break;
                 case "LOGINREPLY": OnLoginReplyPacketReceived((LoginReplyPacket)e.Packet); break;
                 case "MEATTRIB": OnMeAttributePacketReceived((MeAttributePacket)e.Packet); break;
+                case "MISC": OnMiscellaneousPacketReceived((MiscellaneousPacket)e.Packet); break;
                 default: OnAbstractPacketReceived(e.Packet); break;
             }
         }
@@ -532,6 +534,13 @@ namespace OgreIsland.Sockets
         private void OnMeAttributePacketReceived(MeAttributePacketReceivedEventArgs e)
         {
             if (MeAttributePacketReceived != null) MeAttributePacketReceived(this, e);
+            else OnAbstractPacketReceived(e);
+        }
+
+        private void OnMiscellaneousPacketReceived(MiscellaneousPacket packet) { OnMiscellaneousPacketReceived(new MiscellaneousPacketReceivedEventArgs(packet)); }
+        private void OnMiscellaneousPacketReceived(MiscellaneousPacketReceivedEventArgs e)
+        {
+            if (MiscellaneousPacketReceived != null) MiscellaneousPacketReceived(this, e);
             else OnAbstractPacketReceived(e);
         }
 

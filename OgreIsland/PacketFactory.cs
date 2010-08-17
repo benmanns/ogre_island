@@ -87,6 +87,7 @@ namespace OgreIsland
                 case "LOCK": return new LockPacket(packet);
                 case "LOGINREPLY": return new LoginReplyPacket(packet);
                 case "MEATTRIB": return new MeAttributePacket(packet);
+                case "MISC": return new MiscellaneousPacket(packet);
                 default: return new AbstractPacket(packet);
             }
         }
