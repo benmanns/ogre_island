@@ -119,6 +119,7 @@ namespace OgreIsland
                 case "SHOWOBJ": return new ShowObjectPacket(packet);
                 case "SKINNING": return new SkinningPacket(packet);
                 case "SOUND": return new SoundPacket(packet);
+                case "SOUNDTOGGLE": return new SoundTogglePacket(packet);
                 default: return new AbstractPacket(packet);
             }
         }
