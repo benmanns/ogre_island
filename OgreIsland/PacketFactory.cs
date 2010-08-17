@@ -79,6 +79,7 @@ namespace OgreIsland
                 case "HIDEOBJ": return new HideObjectPacket(packet);
                 case "HOUSEITEMTAB": return new HouseItemTabPacket(packet);
                 case "INITBAR": return new InitializationBarPacket(packet);
+                case "INV": return new InventoryPacket(packet);
                 default: return new AbstractPacket(packet);
             }
         }

@@ -52,6 +52,7 @@ namespace OgreIsland.Sockets
         public event HideObjectPacketReceivedEventHandler HideObjectPacketReceived;
         public event HouseItemTabPacketReceivedEventHandler HouseItemTabPacketReceived;
         public event InitializationBarPacketReceivedEventHandler InitializationBarPacketReceived;
+        public event InventoryPacketReceivedEventHandler InventoryPacketReceived;
 
         public Socket(Protocol send, Protocol receive)
         {
@@ -254,6 +255,7 @@ namespace OgreIsland.Sockets
                 case "HIDEOBJ": OnHideObjectPacketReceived((HideObjectPacket)e.Packet); break;
                 case "HOUSEITEMTAB": OnHouseItemTabPacketReceived((HouseItemTabPacket)e.Packet); break;
                 case "INITBAR": OnInitializationBarPacketReceived((InitializationBarPacket)e.Packet); break;
+                case "INV": OnInventoryPacketReceived((InventoryPacket)e.Packet); break;
                 default: OnAbstractPacketReceived(e.Packet); break;
             }
         }
@@ -459,6 +461,13 @@ namespace OgreIsland.Sockets
         private void OnInitializationBarPacketReceived(InitializationBarPacketReceivedEventArgs e)
         {
             if (InitializationBarPacketReceived != null) InitializationBarPacketReceived(this, e);
+            else OnAbstractPacketReceived(e);
+        }
+
+        private void OnInventoryPacketReceived(InventoryPacket packet) { OnInventoryPacketReceived(new InventoryPacketReceivedEventArgs(packet)); }
+        private void OnInventoryPacketReceived(InventoryPacketReceivedEventArgs e)
+        {
+            if (InventoryPacketReceived != null) InventoryPacketReceived(this, e);
             else OnAbstractPacketReceived(e);
         }
 
