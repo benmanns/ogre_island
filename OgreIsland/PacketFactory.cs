@@ -55,6 +55,7 @@ namespace OgreIsland
                 case "ADDCHAR": return new AddCharacterPacket(packet);
                 case "ADDOBJ": return new AddObjectPacket(packet);
                 case "ADDPLAYER": return new AddPlayerPacket(packet);
+                case "ADDTOBAG": return new AddToBagPacket(packet);
                 default: return new AbstractPacket(packet);
             }
         }
