@@ -99,6 +99,7 @@ namespace OgreIsland
                 case "OPENPANEL": return new OpenPanelPacket(packet);
                 case "OPENURL": return new OpenUrlPacket(packet);
                 case "OPENWINDOW": return new OpenWindowPacket(packet);
+                case "PARTY": return new PartyPacket(packet);
                 default: return new AbstractPacket(packet);
             }
         }
