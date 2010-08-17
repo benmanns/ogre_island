@@ -76,6 +76,7 @@ namespace OgreIsland
                 case "GV": return new GetVariablePacket(packet);
                 case "HANDSHAKE": return new HandshakePacket(packet);
                 case "HB": return new HealthBarPacket(packet);
+                case "HIDEOBJ": return new HideObjectPacket(packet);
                 default: return new AbstractPacket(packet);
             }
         }
