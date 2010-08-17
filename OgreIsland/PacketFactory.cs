@@ -120,6 +120,7 @@ namespace OgreIsland
                 case "SKINNING": return new SkinningPacket(packet);
                 case "SOUND": return new SoundPacket(packet);
                 case "SOUNDTOGGLE": return new SoundTogglePacket(packet);
+                case "SPECBAR": return new SpecBarPacket(packet);
                 default: return new AbstractPacket(packet);
             }
         }

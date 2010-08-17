@@ -104,6 +104,7 @@
     <Compile Include="Packets\SkinningPacket.cs" />
     <Compile Include="Packets\SoundPacket.cs" />
     <Compile Include="Packets\SoundTogglePacket.cs" />
+    <Compile Include="Packets\SpecBarPacket.cs" />
     <Compile Include="Packets\SpellBarTextLeftPacket.cs" />
     <Compile Include="Packets\SpellBarTextRightPacket.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -180,6 +181,7 @@
     <Compile Include="Sockets\Events\SkinningPacketReceivedEvent.cs" />
     <Compile Include="Sockets\Events\SoundPacketReceivedEvent.cs" />
     <Compile Include="Sockets\Events\SoundTogglePacketReceivedEvent.cs" />
+    <Compile Include="Sockets\Events\SpecBarPacketReceivedEvent.cs" />
     <Compile Include="Sockets\Events\SpellBarTextLeftPacketReceivedEvent.cs" />
     <Compile Include="Sockets\Events\SpellBarTextRightPacketReceivedEvent.cs" />
     <Compile Include="Sockets\Socket.cs" />
