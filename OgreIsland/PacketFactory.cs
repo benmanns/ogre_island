@@ -118,6 +118,7 @@ namespace OgreIsland
                 case "SHOWHOUSELOCK": return new ShowHouseLockPacket(packet);
                 case "SHOWOBJ": return new ShowObjectPacket(packet);
                 case "SKINNING": return new SkinningPacket(packet);
+                case "SOUND": return new SoundPacket(packet);
                 default: return new AbstractPacket(packet);
             }
         }

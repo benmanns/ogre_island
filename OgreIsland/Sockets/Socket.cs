@@ -91,6 +91,7 @@ namespace OgreIsland.Sockets
         public event ShowHouseLockPacketReceivedEventHandler ShowHouseLockPacketReceived;
         public event ShowObjectPacketReceivedEventHandler ShowObjectPacketReceived;
         public event SkinningPacketReceivedEventHandler SkinningPacketReceived;
+        public event SoundPacketReceivedEventHandler SoundPacketReceived;
 
         public Socket(Protocol send, Protocol receive)
         {
@@ -332,6 +333,7 @@ namespace OgreIsland.Sockets
                 case "SHOWHOUSELOCK": OnShowHouseLockPacketReceived((ShowHouseLockPacket)e.Packet); break;
                 case "SHOWOBJ": OnShowObjectPacketReceived((ShowObjectPacket)e.Packet); break;
                 case "SKINNING": OnSkinningPacketReceived((SkinningPacket)e.Packet); break;
+                case "SOUND": OnSoundPacketReceived((SoundPacket)e.Packet); break;
                 default: OnAbstractPacketReceived(e.Packet); break;
             }
         }
@@ -811,6 +813,13 @@ namespace OgreIsland.Sockets
         private void OnSkinningPacketReceived(SkinningPacketReceivedEventArgs e)
         {
             if (SkinningPacketReceived != null) SkinningPacketReceived(this, e);
+            else OnAbstractPacketReceived(e);
+        }
+
+        private void OnSoundPacketReceived(SoundPacket packet) { OnSoundPacketReceived(new SoundPacketReceivedEventArgs(packet)); }
+        private void OnSoundPacketReceived(SoundPacketReceivedEventArgs e)
+        {
+            if (SoundPacketReceived != null) SoundPacketReceived(this, e);
             else OnAbstractPacketReceived(e);
         }
 
