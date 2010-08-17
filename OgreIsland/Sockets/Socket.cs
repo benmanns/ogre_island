@@ -98,6 +98,7 @@ namespace OgreIsland.Sockets
         public event StatisticPacketReceivedEventHandler StatisticPacketReceived;
         public event StatusPacketReceivedEventHandler StatusPacketReceived;
         public event StopPacketReceivedEventHandler StopPacketReceived;
+        public event SetVariablePacketReceivedEventHandler SetVariablePacketReceived;
 
         public Socket(Protocol send, Protocol receive)
         {
@@ -346,6 +347,7 @@ namespace OgreIsland.Sockets
                 case "STAT": OnStatisticPacketReceived((StatisticPacket)e.Packet); break;
                 case "STATUS": OnStatusPacketReceived((StatusPacket)e.Packet); break;
                 case "STOP": OnStopPacketReceived((StopPacket)e.Packet); break;
+                case "SV": OnSetVariablePacketReceived((SetVariablePacket)e.Packet); break;
                 default: OnAbstractPacketReceived(e.Packet); break;
             }
         }
@@ -874,6 +876,13 @@ namespace OgreIsland.Sockets
         private void OnStopPacketReceived(StopPacketReceivedEventArgs e)
         {
             if (StopPacketReceived != null) StopPacketReceived(this, e);
+            else OnAbstractPacketReceived(e);
+        }
+
+        private void OnSetVariablePacketReceived(SetVariablePacket packet) { OnSetVariablePacketReceived(new SetVariablePacketReceivedEventArgs(packet)); }
+        private void OnSetVariablePacketReceived(SetVariablePacketReceivedEventArgs e)
+        {
+            if (SetVariablePacketReceived != null) SetVariablePacketReceived(this, e);
             else OnAbstractPacketReceived(e);
         }
 
