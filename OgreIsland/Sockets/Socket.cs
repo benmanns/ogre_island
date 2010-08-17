@@ -4,6 +4,7 @@ using System.IO;
 using System.Net.Sockets;
 using System.Xml;
 
+using OgreIsland.Packets;
 using OgreIsland.Sockets.Events;
 
 namespace OgreIsland.Sockets
@@ -23,6 +24,7 @@ namespace OgreIsland.Sockets
         public event SentEventHandler Sent;
 
         public event AbstractPacketReceivedEventHandler AbstractPacketReceived;
+        public event ActionPacketReceivedEventHandler ActionPacketReceived;
 
         public Socket(Protocol send, Protocol receive)
         {
@@ -197,6 +199,7 @@ namespace OgreIsland.Sockets
             if (Received != null) Received(this, e);
             switch (e.Packet.Command)
             {
+                case "ACTION": OnActionPacketReceived((ActionPacket)e.Packet); break;
                 default: OnAbstractPacketReceived(e.Packet); break;
             }
         }
@@ -208,6 +211,13 @@ namespace OgreIsland.Sockets
         private void OnAbstractPacketReceived(AbstractPacketReceivedEventArgs e)
         {
             if (AbstractPacketReceived != null) AbstractPacketReceived(this, e);
+        }
+
+        private void OnActionPacketReceived(ActionPacket packet) { OnActionPacketReceived(new ActionPacketReceivedEventArgs(packet)); }
+        private void OnActionPacketReceived(ActionPacketReceivedEventArgs e)
+        {
+            if (ActionPacketReceived != null) ActionPacketReceived(this, e);
+            else OnAbstractPacketReceived(e);
         }
 
         private void SocketConnected(object sender, ConnectedEventArgs e)

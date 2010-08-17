@@ -4,6 +4,8 @@ using System.IO;
 using System.Text;
 using System.Xml;
 
+using OgreIsland.Packets;
+
 namespace OgreIsland
 {
     public class PacketFactory
@@ -49,6 +51,7 @@ namespace OgreIsland
         {
             switch (packet.Command)
             {
+                case "ACTION": return new ActionPacket(packet);
                 default: return new AbstractPacket(packet);
             }
         }
