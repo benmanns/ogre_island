@@ -87,6 +87,7 @@ namespace OgreIsland.Sockets
         public event SetSkillPacketReceivedEventHandler SetSkillPacketReceived;
         public event SetSkillBarPacketReceivedEventHandler SetSkillBarPacketReceived;
         public event SetSpellBarPacketReceivedEventHandler SetSpellBarPacketReceived;
+        public event SetTextPacketReceivedEventHandler SetTextPacketReceived;
 
         public Socket(Protocol send, Protocol receive)
         {
@@ -324,6 +325,7 @@ namespace OgreIsland.Sockets
                 case "SETSKILL": OnSetSkillPacketReceived((SetSkillPacket)e.Packet); break;
                 case "SETSKILLBAR": OnSetSkillBarPacketReceived((SetSkillBarPacket)e.Packet); break;
                 case "SETSPELLBAR": OnSetSpellBarPacketReceived((SetSpellBarPacket)e.Packet); break;
+                case "SETTEXT": OnSetTextPacketReceived((SetTextPacket)e.Packet); break;
                 default: OnAbstractPacketReceived(e.Packet); break;
             }
         }
@@ -775,6 +777,13 @@ namespace OgreIsland.Sockets
         private void OnSetSpellBarPacketReceived(SetSpellBarPacketReceivedEventArgs e)
         {
             if (SetSpellBarPacketReceived != null) SetSpellBarPacketReceived(this, e);
+            else OnAbstractPacketReceived(e);
+        }
+
+        private void OnSetTextPacketReceived(SetTextPacket packet) { OnSetTextPacketReceived(new SetTextPacketReceivedEventArgs(packet)); }
+        private void OnSetTextPacketReceived(SetTextPacketReceivedEventArgs e)
+        {
+            if (SetTextPacketReceived != null) SetTextPacketReceived(this, e);
             else OnAbstractPacketReceived(e);
         }
 

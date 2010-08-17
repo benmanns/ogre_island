@@ -98,6 +98,7 @@
     <Compile Include="Packets\SetSkillBarPacket.cs" />
     <Compile Include="Packets\SetSkillPacket.cs" />
     <Compile Include="Packets\SetSpellBarPacket.cs" />
+    <Compile Include="Packets\SetTextPacket.cs" />
     <Compile Include="Packets\SpellBarTextLeftPacket.cs" />
     <Compile Include="Packets\SpellBarTextRightPacket.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -168,6 +169,7 @@
     <Compile Include="Sockets\Events\SetSkillBarPacketReceivedEvent.cs" />
     <Compile Include="Sockets\Events\SetSkillPacketReceivedEvent.cs" />
     <Compile Include="Sockets\Events\SetSpellBarPacketReceivedEvent.cs" />
+    <Compile Include="Sockets\Events\SetTextPacketReceivedEvent.cs" />
     <Compile Include="Sockets\Events\SpellBarTextLeftPacketReceivedEvent.cs" />
     <Compile Include="Sockets\Events\SpellBarTextRightPacketReceivedEvent.cs" />
     <Compile Include="Sockets\Socket.cs" />

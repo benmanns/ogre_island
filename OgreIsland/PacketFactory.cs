@@ -114,6 +114,7 @@ namespace OgreIsland
                 case "SETSKILL": return new SetSkillPacket(packet);
                 case "SETSKILLBAR": return new SetSkillBarPacket(packet);
                 case "SETSPELLBAR": return new SetSpellBarPacket(packet);
+                case "SETTEXT": return new SetTextPacket(packet);
                 default: return new AbstractPacket(packet);
             }
         }
