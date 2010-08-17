@@ -101,6 +101,7 @@ namespace OgreIsland
                 case "OPENWINDOW": return new OpenWindowPacket(packet);
                 case "PARTY": return new PartyPacket(packet);
                 case "PLAY": return new PlayPacket(packet);
+                case "PLAYERMENU": return new PlayerMenuPacket(packet);
                 default: return new AbstractPacket(packet);
             }
         }
