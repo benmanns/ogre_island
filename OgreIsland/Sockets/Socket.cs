@@ -73,6 +73,7 @@ namespace OgreIsland.Sockets
         public event OpenUrlPacketReceivedEventHandler OpenUrlPacketReceived;
         public event OpenWindowPacketReceivedEventHandler OpenWindowPacketReceived;
         public event PartyPacketReceivedEventHandler PartyPacketReceived;
+        public event PlayPacketReceivedEventHandler PlayPacketReceived;
 
         public Socket(Protocol send, Protocol receive)
         {
@@ -296,6 +297,7 @@ namespace OgreIsland.Sockets
                 case "OPENURL": OnOpenUrlPacketReceived((OpenUrlPacket)e.Packet); break;
                 case "OPENWINDOW": OnOpenWindowPacketReceived((OpenWindowPacket)e.Packet); break;
                 case "PARTY": OnPartyPacketReceived((PartyPacket)e.Packet); break;
+                case "PLAY": OnPlayPacketReceived((PlayPacket)e.Packet); break;
                 default: OnAbstractPacketReceived(e.Packet); break;
             }
         }
@@ -649,6 +651,13 @@ namespace OgreIsland.Sockets
         private void OnPartyPacketReceived(PartyPacketReceivedEventArgs e)
         {
             if (PartyPacketReceived != null) PartyPacketReceived(this, e);
+            else OnAbstractPacketReceived(e);
+        }
+
+        private void OnPlayPacketReceived(PlayPacket packet) { OnPlayPacketReceived(new PlayPacketReceivedEventArgs(packet)); }
+        private void OnPlayPacketReceived(PlayPacketReceivedEventArgs e)
+        {
+            if (PlayPacketReceived != null) PlayPacketReceived(this, e);
             else OnAbstractPacketReceived(e);
         }
 
