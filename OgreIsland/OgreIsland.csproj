@@ -55,6 +55,7 @@
     <Compile Include="Packets\EditModePacket.cs" />
     <Compile Include="Packets\EditObjectPacket.cs" />
     <Compile Include="Packets\FocusPacket.cs" />
+    <Compile Include="Packets\GetVariablePacket.cs" />
     <Compile Include="Packets\GoodbyePacket.cs" />
     <Compile Include="Packets\GuildMiscellaneousPacket.cs" />
     <Compile Include="Packets\Mode.cs" />
@@ -84,6 +85,7 @@
     <Compile Include="Sockets\Events\EditObjectPacketReceivedEvent.cs" />
     <Compile Include="Sockets\Events\FocusPacketReceivedEvent.cs" />
     <Compile Include="Sockets\Events\GuildMiscellaneousPacketReceivedEvent.cs" />
+    <Compile Include="Sockets\Events\GetVariablePacketReceivedEvent.cs" />
     <Compile Include="Sockets\Events\GoodbyePacketReceivedEvent.cs" />
     <Compile Include="Sockets\Events\ReceivedEvent.cs" />
     <Compile Include="Sockets\Events\SentEvent.cs" />

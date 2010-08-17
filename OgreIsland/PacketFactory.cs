@@ -73,6 +73,7 @@ namespace OgreIsland
                 case "FOCUS": return new FocusPacket(packet);
                 case "GMISC": return new GuildMiscellaneousPacket(packet);
                 case "GOODBYE": return new GoodbyePacket(packet);
+                case "GV": return new GetVariablePacket(packet);
                 default: return new AbstractPacket(packet);
             }
         }

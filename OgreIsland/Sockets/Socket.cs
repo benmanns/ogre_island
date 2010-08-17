@@ -46,6 +46,7 @@ namespace OgreIsland.Sockets
         public event FocusPacketReceivedEventHandler FocusPacketReceived;
         public event GuildMiscellaneousPacketReceivedEventHandler GuildMiscellaneousPacketReceived;
         public event GoodbyePacketReceivedEventHandler GoodbyePacketReceived;
+        public event GetVariablePacketReceivedEventHandler GetVariablePacketReceived;
 
         public Socket(Protocol send, Protocol receive)
         {
@@ -242,6 +243,7 @@ namespace OgreIsland.Sockets
                 case "FOCUS": OnFocusPacketReceived((FocusPacket)e.Packet); break;
                 case "GMISC": OnGuildMiscellaneousPacketReceived((GuildMiscellaneousPacket)e.Packet); break;
                 case "GOODBYE": OnGoodbyePacketReceived((GoodbyePacket)e.Packet); break;
+                case "GV": OnGetVariablePacketReceived((GetVariablePacket)e.Packet); break;
                 default: OnAbstractPacketReceived(e.Packet); break;
             }
         }
@@ -405,6 +407,13 @@ namespace OgreIsland.Sockets
         private void OnGoodbyePacketReceived(GoodbyePacketReceivedEventArgs e)
         {
             if (GoodbyePacketReceived != null) GoodbyePacketReceived(this, e);
+            else OnAbstractPacketReceived(e);
+        }
+
+        private void OnGetVariablePacketReceived(GetVariablePacket packet) { OnGetVariablePacketReceived(new GetVariablePacketReceivedEventArgs(packet)); }
+        private void OnGetVariablePacketReceived(GetVariablePacketReceivedEventArgs e)
+        {
+            if (GetVariablePacketReceived != null) GetVariablePacketReceived(this, e);
             else OnAbstractPacketReceived(e);
         }
 
