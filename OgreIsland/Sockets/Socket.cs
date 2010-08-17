@@ -55,6 +55,7 @@ namespace OgreIsland.Sockets
         public event InventoryPacketReceivedEventHandler InventoryPacketReceived;
         public event JoinPacketReceivedEventHandler JoinPacketReceived;
         public event LeavePacketReceivedEventHandler LeavePacketReceived;
+        public event LoadPanelPacketReceivedEventHandler LoadPanelPacketReceived;
 
         public Socket(Protocol send, Protocol receive)
         {
@@ -260,6 +261,7 @@ namespace OgreIsland.Sockets
                 case "INV": OnInventoryPacketReceived((InventoryPacket)e.Packet); break;
                 case "JOIN": OnJoinPacketReceived((JoinPacket)e.Packet); break;
                 case "LEAVE": OnLeavePacketReceived((LeavePacket)e.Packet); break;
+                case "LOADPANEL": OnLoadPanelPacketReceived((LoadPanelPacket)e.Packet); break;
                 default: OnAbstractPacketReceived(e.Packet); break;
             }
         }
@@ -486,6 +488,13 @@ namespace OgreIsland.Sockets
         private void OnLeavePacketReceived(LeavePacketReceivedEventArgs e)
         {
             if (LeavePacketReceived != null) LeavePacketReceived(this, e);
+            else OnAbstractPacketReceived(e);
+        }
+
+        private void OnLoadPanelPacketReceived(LoadPanelPacket packet) { OnLoadPanelPacketReceived(new LoadPanelPacketReceivedEventArgs(packet)); }
+        private void OnLoadPanelPacketReceived(LoadPanelPacketReceivedEventArgs e)
+        {
+            if (LoadPanelPacketReceived != null) LoadPanelPacketReceived(this, e);
             else OnAbstractPacketReceived(e);
         }
 
