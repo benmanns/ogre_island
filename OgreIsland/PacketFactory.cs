@@ -84,6 +84,7 @@ namespace OgreIsland
                 case "LEAVE": return new LeavePacket(packet);
                 case "LOADPANEL": return new LoadPanelPacket(packet);
                 case "LOADPIC": return new LoadPicturePacket(packet);
+                case "LOCK": return new LockPacket(packet);
                 default: return new AbstractPacket(packet);
             }
         }

@@ -57,6 +57,7 @@ namespace OgreIsland.Sockets
         public event LeavePacketReceivedEventHandler LeavePacketReceived;
         public event LoadPanelPacketReceivedEventHandler LoadPanelPacketReceived;
         public event LoadPicturePacketReceivedEventHandler LoadPicturePacketReceived;
+        public event LockPacketReceivedEventHandler LockPacketReceived;
 
         public Socket(Protocol send, Protocol receive)
         {
@@ -264,6 +265,7 @@ namespace OgreIsland.Sockets
                 case "LEAVE": OnLeavePacketReceived((LeavePacket)e.Packet); break;
                 case "LOADPANEL": OnLoadPanelPacketReceived((LoadPanelPacket)e.Packet); break;
                 case "LOADPIC": OnLoadPicturePacketReceived((LoadPicturePacket)e.Packet); break;
+                case "LOCK": OnLockPacketReceived((LockPacket)e.Packet); break;
                 default: OnAbstractPacketReceived(e.Packet); break;
             }
         }
@@ -504,6 +506,13 @@ namespace OgreIsland.Sockets
         private void OnLoadPicturePacketReceived(LoadPicturePacketReceivedEventArgs e)
         {
             if (LoadPicturePacketReceived != null) LoadPicturePacketReceived(this, e);
+            else OnAbstractPacketReceived(e);
+        }
+
+        private void OnLockPacketReceived(LockPacket packet) { OnLockPacketReceived(new LockPacketReceivedEventArgs(packet)); }
+        private void OnLockPacketReceived(LockPacketReceivedEventArgs e)
+        {
+            if (LockPacketReceived != null) LockPacketReceived(this, e);
             else OnAbstractPacketReceived(e);
         }
 
