@@ -45,6 +45,7 @@ namespace OgreIsland.Sockets
         public event EditObjectPacketReceivedEventHandler EditObjectPacketReceived;
         public event FocusPacketReceivedEventHandler FocusPacketReceived;
         public event GuildMiscellaneousPacketReceivedEventHandler GuildMiscellaneousPacketReceived;
+        public event GoodbyePacketReceivedEventHandler GoodbyePacketReceived;
 
         public Socket(Protocol send, Protocol receive)
         {
@@ -240,6 +241,7 @@ namespace OgreIsland.Sockets
                 case "EDITOBJECT": OnEditObjectPacketReceived((EditObjectPacket)e.Packet); break;
                 case "FOCUS": OnFocusPacketReceived((FocusPacket)e.Packet); break;
                 case "GMISC": OnGuildMiscellaneousPacketReceived((GuildMiscellaneousPacket)e.Packet); break;
+                case "GOODBYE": OnGoodbyePacketReceived((GoodbyePacket)e.Packet); break;
                 default: OnAbstractPacketReceived(e.Packet); break;
             }
         }
@@ -396,6 +398,13 @@ namespace OgreIsland.Sockets
         private void OnGuildMiscellaneousPacketReceived(GuildMiscellaneousPacketReceivedEventArgs e)
         {
             if (GuildMiscellaneousPacketReceived != null) GuildMiscellaneousPacketReceived(this, e);
+            else OnAbstractPacketReceived(e);
+        }
+
+        private void OnGoodbyePacketReceived(GoodbyePacket packet) { OnGoodbyePacketReceived(new GoodbyePacketReceivedEventArgs(packet)); }
+        private void OnGoodbyePacketReceived(GoodbyePacketReceivedEventArgs e)
+        {
+            if (GoodbyePacketReceived != null) GoodbyePacketReceived(this, e);
             else OnAbstractPacketReceived(e);
         }
 
