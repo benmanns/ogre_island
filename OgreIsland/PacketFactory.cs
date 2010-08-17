@@ -88,6 +88,7 @@ namespace OgreIsland
                 case "LOGINREPLY": return new LoginReplyPacket(packet);
                 case "MEATTRIB": return new MeAttributePacket(packet);
                 case "MISC": return new MiscellaneousPacket(packet);
+                case "MODIFYBAGITEM": return new ModifyBagItemPacket(packet);
                 default: return new AbstractPacket(packet);
             }
         }

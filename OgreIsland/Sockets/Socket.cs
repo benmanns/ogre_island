@@ -61,6 +61,7 @@ namespace OgreIsland.Sockets
         public event LoginReplyPacketReceivedEventHandler LoginReplyPacketReceived;
         public event MeAttributePacketReceivedEventHandler MeAttributePacketReceived;
         public event MiscellaneousPacketReceivedEventHandler MiscellaneousPacketReceived;
+        public event ModifyBagItemPacketReceivedEventHandler ModifyBagItemPacketReceived;
 
         public Socket(Protocol send, Protocol receive)
         {
@@ -272,6 +273,7 @@ namespace OgreIsland.Sockets
                 case "LOGINREPLY": OnLoginReplyPacketReceived((LoginReplyPacket)e.Packet); break;
                 case "MEATTRIB": OnMeAttributePacketReceived((MeAttributePacket)e.Packet); break;
                 case "MISC": OnMiscellaneousPacketReceived((MiscellaneousPacket)e.Packet); break;
+                case "MODIFYBAGITEM": OnModifyBagItemPacketReceived((ModifyBagItemPacket)e.Packet); break;
                 default: OnAbstractPacketReceived(e.Packet); break;
             }
         }
@@ -541,6 +543,13 @@ namespace OgreIsland.Sockets
         private void OnMiscellaneousPacketReceived(MiscellaneousPacketReceivedEventArgs e)
         {
             if (MiscellaneousPacketReceived != null) MiscellaneousPacketReceived(this, e);
+            else OnAbstractPacketReceived(e);
+        }
+
+        private void OnModifyBagItemPacketReceived(ModifyBagItemPacket packet) { OnModifyBagItemPacketReceived(new ModifyBagItemPacketReceivedEventArgs(packet)); }
+        private void OnModifyBagItemPacketReceived(ModifyBagItemPacketReceivedEventArgs e)
+        {
+            if (ModifyBagItemPacketReceived != null) ModifyBagItemPacketReceived(this, e);
             else OnAbstractPacketReceived(e);
         }
 
