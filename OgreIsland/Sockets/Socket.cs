@@ -67,6 +67,7 @@ namespace OgreIsland.Sockets
         public event MoveObjectPacketReceivedEventHandler MoveObjectPacketReceived;
         public event MoveObjectOtherPacketReceivedEventHandler MoveObjectOtherPacketReceived;
         public event MessageBoxPacketReceivedEventHandler MessageBoxPacketReceived;
+        public event NewLockBoxPacketReceivedEventHandler NewLockBoxPacketReceived;
 
         public Socket(Protocol send, Protocol receive)
         {
@@ -284,6 +285,7 @@ namespace OgreIsland.Sockets
                 case "MOVEOBJ": OnMoveObjectPacketReceived((MoveObjectPacket)e.Packet); break;
                 case "MOVEOBJ2": OnMoveObjectOtherPacketReceived((MoveObjectOtherPacket)e.Packet); break;
                 case "MSGBOX": OnMessageBoxPacketReceived((MessageBoxPacket)e.Packet); break;
+                case "NEWLOCKBOX": OnNewLockBoxPacketReceived((NewLockBoxPacket)e.Packet); break;
                 default: OnAbstractPacketReceived(e.Packet); break;
             }
         }
@@ -595,6 +597,13 @@ namespace OgreIsland.Sockets
         private void OnMessageBoxPacketReceived(MessageBoxPacketReceivedEventArgs e)
         {
             if (MessageBoxPacketReceived != null) MessageBoxPacketReceived(this, e);
+            else OnAbstractPacketReceived(e);
+        }
+
+        private void OnNewLockBoxPacketReceived(NewLockBoxPacket packet) { OnNewLockBoxPacketReceived(new NewLockBoxPacketReceivedEventArgs(packet)); }
+        private void OnNewLockBoxPacketReceived(NewLockBoxPacketReceivedEventArgs e)
+        {
+            if (NewLockBoxPacketReceived != null) NewLockBoxPacketReceived(this, e);
             else OnAbstractPacketReceived(e);
         }
 

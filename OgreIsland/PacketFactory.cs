@@ -94,6 +94,7 @@ namespace OgreIsland
                 case "MOVEOBJ": return new MoveObjectPacket(packet);
                 case "MOVEOBJ2": return new MoveObjectOtherPacket(packet);
                 case "MSGBOX": return new MessageBoxPacket(packet);
+                case "NEWLOCKBOX": return new NewLockBoxPacket(packet);
                 default: return new AbstractPacket(packet);
             }
         }
