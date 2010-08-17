@@ -131,6 +131,7 @@ namespace OgreIsland
                 case "TOOLICON": return new ToolIconPacket(packet);
                 case "TRADEWINDOW": return new TradeWindowPacket(packet);
                 case "WARP": return new WarpPacket(packet);
+                case "WEATHER": return new WeatherPacket(packet);
                 default: return new AbstractPacket(packet);
             }
         }
