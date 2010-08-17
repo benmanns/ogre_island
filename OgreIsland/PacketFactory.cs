@@ -127,6 +127,7 @@ namespace OgreIsland
                 case "STOP": return new StopPacket(packet);
                 case "SV": return new SetVariablePacket(packet);
                 case "TAKEFROMBAG": return new TakeFromBagPacket(packet);
+                case "TICK": return new TickPacket(packet);
                 default: return new AbstractPacket(packet);
             }
         }
