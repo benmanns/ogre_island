@@ -68,6 +68,7 @@ namespace OgreIsland.Sockets
         public event MoveObjectOtherPacketReceivedEventHandler MoveObjectOtherPacketReceived;
         public event MessageBoxPacketReceivedEventHandler MessageBoxPacketReceived;
         public event NewLockBoxPacketReceivedEventHandler NewLockBoxPacketReceived;
+        public event NoFloodWarningPacketReceivedEventHandler NoFloodWarningPacketReceived;
 
         public Socket(Protocol send, Protocol receive)
         {
@@ -286,6 +287,7 @@ namespace OgreIsland.Sockets
                 case "MOVEOBJ2": OnMoveObjectOtherPacketReceived((MoveObjectOtherPacket)e.Packet); break;
                 case "MSGBOX": OnMessageBoxPacketReceived((MessageBoxPacket)e.Packet); break;
                 case "NEWLOCKBOX": OnNewLockBoxPacketReceived((NewLockBoxPacket)e.Packet); break;
+                case "NOFLOODWARNING": OnNoFloodWarningPacketReceived((NoFloodWarningPacket)e.Packet); break;
                 default: OnAbstractPacketReceived(e.Packet); break;
             }
         }
@@ -604,6 +606,13 @@ namespace OgreIsland.Sockets
         private void OnNewLockBoxPacketReceived(NewLockBoxPacketReceivedEventArgs e)
         {
             if (NewLockBoxPacketReceived != null) NewLockBoxPacketReceived(this, e);
+            else OnAbstractPacketReceived(e);
+        }
+
+        private void OnNoFloodWarningPacketReceived(NoFloodWarningPacket packet) { OnNoFloodWarningPacketReceived(new NoFloodWarningPacketReceivedEventArgs(packet)); }
+        private void OnNoFloodWarningPacketReceived(NoFloodWarningPacketReceivedEventArgs e)
+        {
+            if (NoFloodWarningPacketReceived != null) NoFloodWarningPacketReceived(this, e);
             else OnAbstractPacketReceived(e);
         }
 
