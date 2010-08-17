@@ -52,6 +52,7 @@ namespace OgreIsland
             switch (packet.Command)
             {
                 case "ACTION": return new ActionPacket(packet);
+                case "ADDCHAR": return new AddCharacterPacket(packet);
                 default: return new AbstractPacket(packet);
             }
         }
