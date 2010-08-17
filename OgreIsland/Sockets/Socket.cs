@@ -79,6 +79,7 @@ namespace OgreIsland.Sockets
         public event RemoveObjectPacketReceivedEventHandler RemoveObjectPacketReceived;
         public event RemovePlayerPacketReceivedEventHandler RemovePlayerPacketReceived;
         public event SayPacketReceivedEventHandler SayPacketReceived;
+        public event SpellBarTextLeftPacketReceivedEventHandler SpellBarTextLeftPacketReceived;
 
         public Socket(Protocol send, Protocol receive)
         {
@@ -308,6 +309,7 @@ namespace OgreIsland.Sockets
                 case "REMOBJ": OnRemoveObjectPacketReceived((RemoveObjectPacket)e.Packet); break;
                 case "REMOVEPLAYER": OnRemovePlayerPacketReceived((RemovePlayerPacket)e.Packet); break;
                 case "SAY": OnSayPacketReceived((SayPacket)e.Packet); break;
+                case "SBTEXTL": OnSpellBarTextLeftPacketReceived((SpellBarTextLeftPacket)e.Packet); break;
                 default: OnAbstractPacketReceived(e.Packet); break;
             }
         }
@@ -703,6 +705,13 @@ namespace OgreIsland.Sockets
         private void OnSayPacketReceived(SayPacketReceivedEventArgs e)
         {
             if (SayPacketReceived != null) SayPacketReceived(this, e);
+            else OnAbstractPacketReceived(e);
+        }
+
+        private void OnSpellBarTextLeftPacketReceived(SpellBarTextLeftPacket packet) { OnSpellBarTextLeftPacketReceived(new SpellBarTextLeftPacketReceivedEventArgs(packet)); }
+        private void OnSpellBarTextLeftPacketReceived(SpellBarTextLeftPacketReceivedEventArgs e)
+        {
+            if (SpellBarTextLeftPacketReceived != null) SpellBarTextLeftPacketReceived(this, e);
             else OnAbstractPacketReceived(e);
         }
 
