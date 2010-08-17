@@ -83,6 +83,7 @@ namespace OgreIsland.Sockets
         public event SpellBarTextRightPacketReceivedEventHandler SpellBarTextRightPacketReceived;
         public event SelectedPacketReceivedEventHandler SelectedPacketReceived;
         public event SetActionPacketReceivedEventHandler SetActionPacketReceived;
+        public event SetClipsPacketReceivedEventHandler SetClipsPacketReceived;
 
         public Socket(Protocol send, Protocol receive)
         {
@@ -316,6 +317,7 @@ namespace OgreIsland.Sockets
                 case "SBTEXTR": OnSpellBarTextRightPacketReceived((SpellBarTextRightPacket)e.Packet); break;
                 case "SELECTED": OnSelectedPacketReceived((SelectedPacket)e.Packet); break;
                 case "SETACTION": OnSetActionPacketReceived((SetActionPacket)e.Packet); break;
+                case "SETCLIPS": OnSetClipsPacketReceived((SetClipsPacket)e.Packet); break;
                 default: OnAbstractPacketReceived(e.Packet); break;
             }
         }
@@ -739,6 +741,13 @@ namespace OgreIsland.Sockets
         private void OnSetActionPacketReceived(SetActionPacketReceivedEventArgs e)
         {
             if (SetActionPacketReceived != null) SetActionPacketReceived(this, e);
+            else OnAbstractPacketReceived(e);
+        }
+
+        private void OnSetClipsPacketReceived(SetClipsPacket packet) { OnSetClipsPacketReceived(new SetClipsPacketReceivedEventArgs(packet)); }
+        private void OnSetClipsPacketReceived(SetClipsPacketReceivedEventArgs e)
+        {
+            if (SetClipsPacketReceived != null) SetClipsPacketReceived(this, e);
             else OnAbstractPacketReceived(e);
         }
 

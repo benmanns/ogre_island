@@ -110,6 +110,7 @@ namespace OgreIsland
                 case "SBTEXTR": return new SpellBarTextRightPacket(packet);
                 case "SELECTED": return new SelectedPacket(packet);
                 case "SETACTION": return new SetActionPacket(packet);
+                case "SETCLIPS": return new SetClipsPacket(packet);
                 default: return new AbstractPacket(packet);
             }
         }
