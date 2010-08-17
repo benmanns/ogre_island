@@ -112,6 +112,7 @@ namespace OgreIsland
                 case "SETACTION": return new SetActionPacket(packet);
                 case "SETCLIPS": return new SetClipsPacket(packet);
                 case "SETSKILL": return new SetSkillPacket(packet);
+                case "SETSKILLBAR": return new SetSkillBarPacket(packet);
                 default: return new AbstractPacket(packet);
             }
         }
