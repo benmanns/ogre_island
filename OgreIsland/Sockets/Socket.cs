@@ -26,6 +26,7 @@ namespace OgreIsland.Sockets
         public event AbstractPacketReceivedEventHandler AbstractPacketReceived;
         public event ActionPacketReceivedEventHandler ActionPacketReceived;
         public event AddCharacterPacketReceivedEventHandler AddCharacterPacketReceived;
+        public event AddObjectPacketReceivedEventHandler AddObjectPacketReceived;
 
         public Socket(Protocol send, Protocol receive)
         {
@@ -202,6 +203,7 @@ namespace OgreIsland.Sockets
             {
                 case "ACTION": OnActionPacketReceived((ActionPacket)e.Packet); break;
                 case "ADDCHAR": OnAddCharacterPacketReceived((AddCharacterPacket)e.Packet); break;
+                case "ADDOBJ": OnAddObjectPacketReceived((AddObjectPacket)e.Packet); break;
                 default: OnAbstractPacketReceived(e.Packet); break;
             }
         }
@@ -226,6 +228,13 @@ namespace OgreIsland.Sockets
         private void OnAddCharacterPacketReceived(AddCharacterPacketReceivedEventArgs e)
         {
             if (AddCharacterPacketReceived != null) AddCharacterPacketReceived(this, e);
+            else OnAbstractPacketReceived(e);
+        }
+
+        private void OnAddObjectPacketReceived(AddObjectPacket packet) { OnAddObjectPacketReceived(new AddObjectPacketReceivedEventArgs(packet)); }
+        private void OnAddObjectPacketReceived(AddObjectPacketReceivedEventArgs e)
+        {
+            if (AddObjectPacketReceived != null) AddObjectPacketReceived(this, e);
             else OnAbstractPacketReceived(e);
         }
 
