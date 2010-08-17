@@ -69,6 +69,7 @@ namespace OgreIsland.Sockets
         public event MessageBoxPacketReceivedEventHandler MessageBoxPacketReceived;
         public event NewLockBoxPacketReceivedEventHandler NewLockBoxPacketReceived;
         public event NoFloodWarningPacketReceivedEventHandler NoFloodWarningPacketReceived;
+        public event OpenPanelPacketReceivedEventHandler OpenPanelPacketReceived;
 
         public Socket(Protocol send, Protocol receive)
         {
@@ -288,6 +289,7 @@ namespace OgreIsland.Sockets
                 case "MSGBOX": OnMessageBoxPacketReceived((MessageBoxPacket)e.Packet); break;
                 case "NEWLOCKBOX": OnNewLockBoxPacketReceived((NewLockBoxPacket)e.Packet); break;
                 case "NOFLOODWARNING": OnNoFloodWarningPacketReceived((NoFloodWarningPacket)e.Packet); break;
+                case "OPENPANEL": OnOpenPanelPacketReceived((OpenPanelPacket)e.Packet); break;
                 default: OnAbstractPacketReceived(e.Packet); break;
             }
         }
@@ -613,6 +615,13 @@ namespace OgreIsland.Sockets
         private void OnNoFloodWarningPacketReceived(NoFloodWarningPacketReceivedEventArgs e)
         {
             if (NoFloodWarningPacketReceived != null) NoFloodWarningPacketReceived(this, e);
+            else OnAbstractPacketReceived(e);
+        }
+
+        private void OnOpenPanelPacketReceived(OpenPanelPacket packet) { OnOpenPanelPacketReceived(new OpenPanelPacketReceivedEventArgs(packet)); }
+        private void OnOpenPanelPacketReceived(OpenPanelPacketReceivedEventArgs e)
+        {
+            if (OpenPanelPacketReceived != null) OpenPanelPacketReceived(this, e);
             else OnAbstractPacketReceived(e);
         }
 

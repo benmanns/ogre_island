@@ -96,6 +96,7 @@ namespace OgreIsland
                 case "MSGBOX": return new MessageBoxPacket(packet);
                 case "NEWLOCKBOX": return new NewLockBoxPacket(packet);
                 case "NOFLOODWARNING": return new NoFloodWarningPacket(packet);
+                case "OPENPANEL": return new OpenPanelPacket(packet);
                 default: return new AbstractPacket(packet);
             }
         }
