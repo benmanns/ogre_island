@@ -36,6 +36,7 @@ namespace OgreIsland.Sockets
         public event BattleTextMiscellaneousPacketReceivedEventHandler BattleTextMiscellaneousPacketReceived;
         public event ChatChannelPacketReceivedEventHandler ChatChannelPacketReceived;
         public event CharacterAttributePacketReceivedEventHandler CharacterAttributePacketReceived;
+        public event ClearSpellPacketReceivedEventHandler ClearSpellPacketReceived;
 
         public Socket(Protocol send, Protocol receive)
         {
@@ -222,6 +223,7 @@ namespace OgreIsland.Sockets
                 case "BTMISC": OnBattleTextMiscellaneousPacketReceived((BattleTextMiscellaneousPacket)e.Packet); break;
                 case "CCHANNEL": OnChatChannelPacketReceived((ChatChannelPacket)e.Packet); break;
                 case "CHARATTRIB": OnCharacterAttributePacketReceived((CharacterAttributePacket)e.Packet); break;
+                case "CLEARSPELL": OnClearSpellPacketReceived((ClearSpellPacket)e.Packet); break;
                 default: OnAbstractPacketReceived(e.Packet); break;
             }
         }
@@ -315,6 +317,13 @@ namespace OgreIsland.Sockets
         private void OnCharacterAttributePacketReceived(CharacterAttributePacketReceivedEventArgs e)
         {
             if (CharacterAttributePacketReceived != null) CharacterAttributePacketReceived(this, e);
+            else OnAbstractPacketReceived(e);
+        }
+
+        private void OnClearSpellPacketReceived(ClearSpellPacket packet) { OnClearSpellPacketReceived(new ClearSpellPacketReceivedEventArgs(packet)); }
+        private void OnClearSpellPacketReceived(ClearSpellPacketReceivedEventArgs e)
+        {
+            if (ClearSpellPacketReceived != null) ClearSpellPacketReceived(this, e);
             else OnAbstractPacketReceived(e);
         }
 

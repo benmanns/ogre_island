@@ -63,6 +63,7 @@ namespace OgreIsland
                 case "BTMISC": return new BattleTextMiscellaneousPacket(packet);
                 case "CCHANNEL": return new ChatChannelPacket(packet);
                 case "CHARATTRIB": return new CharacterAttributePacket(packet);
+                case "CLEARSPELL": return new ClearSpellPacket(packet);
                 default: return new AbstractPacket(packet);
             }
         }
