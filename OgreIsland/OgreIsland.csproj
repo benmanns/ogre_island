@@ -72,6 +72,7 @@
     <Compile Include="Packets\LoginPacket.cs" />
     <Compile Include="Packets\LoginReplyPacket.cs" />
     <Compile Include="Packets\MeAttributePacket.cs" />
+    <Compile Include="Packets\MessageBoxPacket.cs" />
     <Compile Include="Packets\MiscellaneousPacket.cs" />
     <Compile Include="Packets\Mode.cs" />
     <Compile Include="Packets\ModifyBagItemPacket.cs" />
@@ -120,6 +121,7 @@
     <Compile Include="Sockets\Events\LockPacketReceivedEvent.cs" />
     <Compile Include="Sockets\Events\LoginReplyPacketReceivedEvent.cs" />
     <Compile Include="Sockets\Events\MeAttributePacketReceivedEvent.cs" />
+    <Compile Include="Sockets\Events\MessageBoxPacketReceivedEvent.cs" />
     <Compile Include="Sockets\Events\MiscellaneousPacketReceivedEvent.cs" />
     <Compile Include="Sockets\Events\ModifyBagItemPacketReceivedEvent.cs" />
     <Compile Include="Sockets\Events\ModifyObjectPacketReceivedEvent.cs" />
