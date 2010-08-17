@@ -76,6 +76,7 @@
     <Compile Include="Packets\Mode.cs" />
     <Compile Include="Packets\ModifyBagItemPacket.cs" />
     <Compile Include="Packets\ModifyObjectPacket.cs" />
+    <Compile Include="Packets\MoveObjectOtherPacket.cs" />
     <Compile Include="Packets\MoveObjectPacket.cs" />
     <Compile Include="Packets\MovePacket.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -122,6 +123,7 @@
     <Compile Include="Sockets\Events\MiscellaneousPacketReceivedEvent.cs" />
     <Compile Include="Sockets\Events\ModifyBagItemPacketReceivedEvent.cs" />
     <Compile Include="Sockets\Events\ModifyObjectPacketReceivedEvent.cs" />
+    <Compile Include="Sockets\Events\MoveObjectOtherPacketReceivedEvent.cs" />
     <Compile Include="Sockets\Events\MoveObjectPacketReceivedEvent.cs" />
     <Compile Include="Sockets\Events\MovePacketReceivedEvent.cs" />
     <Compile Include="Sockets\Events\ReceivedEvent.cs" />

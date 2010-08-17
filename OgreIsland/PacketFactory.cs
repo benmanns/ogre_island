@@ -92,6 +92,7 @@ namespace OgreIsland
                 case "MODOBJ": return new ModifyObjectPacket(packet);
                 case "MOVE": return new MovePacket(packet, Mode.Server);
                 case "MOVEOBJ": return new MoveObjectPacket(packet);
+                case "MOVEOBJ2": return new MoveObjectOtherPacket(packet);
                 default: return new AbstractPacket(packet);
             }
         }
