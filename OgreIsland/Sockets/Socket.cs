@@ -48,6 +48,7 @@ namespace OgreIsland.Sockets
         public event GoodbyePacketReceivedEventHandler GoodbyePacketReceived;
         public event GetVariablePacketReceivedEventHandler GetVariablePacketReceived;
         public event HandshakePacketReceivedEventHandler HandshakePacketReceived;
+        public event HealthBarPacketReceivedEventHandler HealthBarPacketReceived;
 
         public Socket(Protocol send, Protocol receive)
         {
@@ -246,6 +247,7 @@ namespace OgreIsland.Sockets
                 case "GOODBYE": OnGoodbyePacketReceived((GoodbyePacket)e.Packet); break;
                 case "GV": OnGetVariablePacketReceived((GetVariablePacket)e.Packet); break;
                 case "HANDSHAKE": OnHandshakePacketReceived((HandshakePacket)e.Packet); break;
+                case "HB": OnHealthBarPacketReceived((HealthBarPacket)e.Packet); break;
                 default: OnAbstractPacketReceived(e.Packet); break;
             }
         }
@@ -423,6 +425,13 @@ namespace OgreIsland.Sockets
         private void OnHandshakePacketReceived(HandshakePacketReceivedEventArgs e)
         {
             if (HandshakePacketReceived != null) HandshakePacketReceived(this, e);
+            else OnAbstractPacketReceived(e);
+        }
+
+        private void OnHealthBarPacketReceived(HealthBarPacket packet) { OnHealthBarPacketReceived(new HealthBarPacketReceivedEventArgs(packet)); }
+        private void OnHealthBarPacketReceived(HealthBarPacketReceivedEventArgs e)
+        {
+            if (HealthBarPacketReceived != null) HealthBarPacketReceived(this, e);
             else OnAbstractPacketReceived(e);
         }
 
