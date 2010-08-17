@@ -124,6 +124,7 @@ namespace OgreIsland
                 case "SPELL": return new SpellPacket(packet);
                 case "STAT": return new StatisticPacket(packet);
                 case "STATUS": return new StatusPacket(packet);
+                case "STOP": return new StopPacket(packet);
                 default: return new AbstractPacket(packet);
             }
         }
