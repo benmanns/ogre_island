@@ -83,6 +83,7 @@ namespace OgreIsland
                 case "JOIN": return new JoinPacket(packet);
                 case "LEAVE": return new LeavePacket(packet);
                 case "LOADPANEL": return new LoadPanelPacket(packet);
+                case "LOADPIC": return new LoadPicturePacket(packet);
                 default: return new AbstractPacket(packet);
             }
         }
