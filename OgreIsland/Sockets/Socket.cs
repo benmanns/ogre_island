@@ -102,6 +102,7 @@ namespace OgreIsland.Sockets
         public event TakeFromBagPacketReceivedEventHandler TakeFromBagPacketReceived;
         public event TickPacketReceivedEventHandler TickPacketReceived;
         public event ToolIconPacketReceivedEventHandler ToolIconPacketReceived;
+        public event TradeWindowPacketReceivedEventHandler TradeWindowPacketReceived;
 
         public Socket(Protocol send, Protocol receive)
         {
@@ -354,6 +355,7 @@ namespace OgreIsland.Sockets
                 case "TAKEFROMBAG": OnTakeFromBagPacketReceived((TakeFromBagPacket)e.Packet); break;
                 case "TICK": OnTickPacketReceived((TickPacket)e.Packet); break;
                 case "TOOLICON": OnToolIconPacketReceived((ToolIconPacket)e.Packet); break;
+                case "TRADEWINDOW": OnTradeWindowPacketReceived((TradeWindowPacket)e.Packet); break;
                 default: OnAbstractPacketReceived(e.Packet); break;
             }
         }
@@ -910,6 +912,13 @@ namespace OgreIsland.Sockets
         private void OnToolIconPacketReceived(ToolIconPacketReceivedEventArgs e)
         {
             if (ToolIconPacketReceived != null) ToolIconPacketReceived(this, e);
+            else OnAbstractPacketReceived(e);
+        }
+
+        private void OnTradeWindowPacketReceived(TradeWindowPacket packet) { OnTradeWindowPacketReceived(new TradeWindowPacketReceivedEventArgs(packet)); }
+        private void OnTradeWindowPacketReceived(TradeWindowPacketReceivedEventArgs e)
+        {
+            if (TradeWindowPacketReceived != null) TradeWindowPacketReceived(this, e);
             else OnAbstractPacketReceived(e);
         }
 

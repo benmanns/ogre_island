@@ -129,6 +129,7 @@ namespace OgreIsland
                 case "TAKEFROMBAG": return new TakeFromBagPacket(packet);
                 case "TICK": return new TickPacket(packet);
                 case "TOOLICON": return new ToolIconPacket(packet);
+                case "TRADEWINDOW": return new TradeWindowPacket(packet);
                 default: return new AbstractPacket(packet);
             }
         }
