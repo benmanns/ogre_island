@@ -104,6 +104,7 @@ namespace OgreIsland
                 case "PLAYERMENU": return new PlayerMenuPacket(packet);
                 case "REMCHAR": return new RemoveCharacterPacket(packet);
                 case "REMOBJ": return new RemoveObjectPacket(packet);
+                case "REMOVEPLAYER": return new RemovePlayerPacket(packet);
                 default: return new AbstractPacket(packet);
             }
         }
