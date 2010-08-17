@@ -96,6 +96,7 @@ namespace OgreIsland.Sockets
         public event SpecBarPacketReceivedEventHandler SpecBarPacketReceived;
         public event SpellPacketReceivedEventHandler SpellPacketReceived;
         public event StatisticPacketReceivedEventHandler StatisticPacketReceived;
+        public event StatusPacketReceivedEventHandler StatusPacketReceived;
 
         public Socket(Protocol send, Protocol receive)
         {
@@ -342,6 +343,7 @@ namespace OgreIsland.Sockets
                 case "SPECBAR": OnSpecBarPacketReceived((SpecBarPacket)e.Packet); break;
                 case "SPELL": OnSpellPacketReceived((SpellPacket)e.Packet); break;
                 case "STAT": OnStatisticPacketReceived((StatisticPacket)e.Packet); break;
+                case "STATUS": OnStatusPacketReceived((StatusPacket)e.Packet); break;
                 default: OnAbstractPacketReceived(e.Packet); break;
             }
         }
@@ -856,6 +858,13 @@ namespace OgreIsland.Sockets
         private void OnStatisticPacketReceived(StatisticPacketReceivedEventArgs e)
         {
             if (StatisticPacketReceived != null) StatisticPacketReceived(this, e);
+            else OnAbstractPacketReceived(e);
+        }
+
+        private void OnStatusPacketReceived(StatusPacket packet) { OnStatusPacketReceived(new StatusPacketReceivedEventArgs(packet)); }
+        private void OnStatusPacketReceived(StatusPacketReceivedEventArgs e)
+        {
+            if (StatusPacketReceived != null) StatusPacketReceived(this, e);
             else OnAbstractPacketReceived(e);
         }
 

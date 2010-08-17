@@ -123,6 +123,7 @@ namespace OgreIsland
                 case "SPECBAR": return new SpecBarPacket(packet);
                 case "SPELL": return new SpellPacket(packet);
                 case "STAT": return new StatisticPacket(packet);
+                case "STATUS": return new StatusPacket(packet);
                 default: return new AbstractPacket(packet);
             }
         }
